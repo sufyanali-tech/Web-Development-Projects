@@ -1,34 +1,57 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="form-div">
-        <h3>Login or Sigup</h3>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="form-container">
+      <h3 class="form-title">Login or Signup</h3>
 
-        <form novalidate>
-            <div class="input-group">
-                <input type="email" class="input-field" id="email" placeholder="Email address or mobile number">
-            </div>
-            <div class="input-group">
-                <input type="password" class="input-field"id="password" placeholder="Password">
-            </div>
-            <div class="input-group">
-                <button class="login-button"type="submit">Login</button>
-            </div>
+      <form novalidate class="login-form">
+        <div>
+          <input
+            type="email"
+            class="input-fields"
+            placeholder="Email address or phone number"
+          />
+          <input type="password" class="input-fields" placeholder="Password" />
+        </div>
 
-            <div class="input-group">
-                <button class="login-button"type="submit">Forgetten Password</button>
-            </div>
-            <div class="input-group">
-                <button class="login-button"type="submit">Create new Account</button>
-            </div>
+        <button type="submit">Login</button>
+        <button type="button" class="button-fields">Forgetten password</button>
+        <button type="button" id="create-account">Create new account</button>
+      </form>
+      <div class="create-newAccount">
+        <h3>Enter your personal infomation</h3>
+        <form>
+          <div>
+            <input type="text" placeholder="First name" />
+            <input type="text" placeholder="Last name" />
+          </div>
+          <div>
+            <small>Select date of birth</small>
+            <input type="date" />
+          </div>
+          <div>
+            <small>Select Gender</small><br />
+            <input type="radio" name="gender-check" value="male" /> Male <br />
+            <input type="radio" name="gender-check" value="female" /> Female
+            <br />
+          </div>
+          <div>
+            <small>Email</small>
+            <input type="email" placeholder="Email address or phone number" />
+            <small>Password</small>
+            <input type="password" placeholder="password" />
+          </div>
+          <button type="submit">Login</button>
         </form>
+      </div>
     </div>
+
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
