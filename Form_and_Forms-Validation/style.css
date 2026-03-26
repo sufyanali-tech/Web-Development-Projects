@@ -1,6 +1,7 @@
 * {
     padding: 0px;
     margin: 0px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     box-sizing: border-box;
 }
 
@@ -9,38 +10,52 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* background-color: black; */
+    background-color: black;
 }
 .form-container {
     width: 400px;
     height: 400px;
-    /* background-color: white; */
+    border-radius: 15px;
+    background-color: white;
+}
+.form-container h3 {
+    text-align: center;
+    margin: 23px 0px;
 }
 .input-fields {
     display: flex;
     flex-direction: column;
+    margin: auto;
+    margin-bottom: 30px;
+    padding: 7px;
+    width: 60%;
+    border: 1px solid grey;
+    border-radius: 10px;
 }
 .button-fields {
     display: flex;
     flex-direction: column;
+    margin: auto;
+    padding: 7px;
+    width: 60%;
+    margin-bottom: 10px;
+    border: 1px solid grey;
+    border-radius: 20px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.create-newAccount {
-    display: none;
+.input-fields:focus {
+    
+    border: 1px solid rgb(90, 129, 222);
+    outline: none;
+}
+/* .input-fields:hover {
+    
+    background-color: black;
+} */
+.button-fields:hover {
+    background-color: black;
+    color: white;
+}
+.newPage {
+    display: flex;
+    flex-direction: column;
 }
