@@ -1,4 +1,6 @@
- 
+<!doctype html>
+<html lang="en">
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
@@ -14,43 +16,28 @@
           <input
             type="email"
             class="input-fields"
+            id="email"
             placeholder="Email address or phone number"
           />
-          <input type="password" class="input-fields" placeholder="Password" />
+          <input
+            type="password"
+            class="input-fields"
+            id="password"
+            placeholder="Password"
+          />
         </div>
 
-        <button type="submit" class="button-fields">Login</button>
-        <button type="button" class="button-fields">Forgetten password</button>
-        <button type="button" class="button-fields" id="create-account-button">Create new account</button>
+        <div class="login-anchor-tag">
+          <a href="#" id="login">Login</a>
+        </div>
+        <div class="password-anchor-tag">
+          <a href="#" id="forgetten-password">Forgetten password?</a>
+        </div>
+        <div class="new-account-anchor-tag">
+          <a href="#" id="create-Newaccount">Create new account</a>
+        </div>
       </form>
     </div>
-
-      <!-- <div class="create-newAccount">
-        <h3>Enter your personal infomation</h3>
-        <form>
-          <div>
-            <input type="text" placeholder="First name" />
-            <input type="text" placeholder="Last name" />
-          </div>
-          <div>
-            <small>Select date of birth</small>
-            <input type="date" />
-          </div>
-          <div>
-            <small>Select Gender</small><br />
-            <input type="radio" name="gender-check" value="male" /> Male <br />
-            <input type="radio" name="gender-check" value="female" /> Female
-            <br />
-          </div>
-          <div>
-            <small>Email</small>
-            <input type="email" placeholder="Email address or phone number" />
-            <small>Password</small>
-            <input type="password" placeholder="password" />
-          </div>
-          <button type="submit">Login</button>
-        </form>
-      </div> -->
 
     <script src="script.js"></script>
   </body>

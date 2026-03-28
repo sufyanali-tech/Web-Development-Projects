@@ -13,8 +13,8 @@ body {
     background-color: black;
 }
 .form-container {
-    width: 400px;
-    height: 400px;
+    width: 600px;
+    height: 600px;
     border-radius: 15px;
     background-color: white;
 }
@@ -27,35 +27,91 @@ body {
     flex-direction: column;
     margin: auto;
     margin-bottom: 30px;
-    padding: 7px;
+    padding: 15px;
     width: 60%;
-    border: 1px solid grey;
+    border: 1px solid rgb(209, 208, 208);
     border-radius: 10px;
 }
-.button-fields {
-    display: flex;
-    flex-direction: column;
+.input-fields:focus {
+    
+    border-color: #1877f2;
+    outline: none;
+}
+.input-fields:hover {
+
+    border-color: black;
+}
+.email-error {
+    display: none;
+}
+.password-error {
+    display: none;
+}
+.login-anchor-tag {
+    text-align: center;
     margin: auto;
-    padding: 7px;
+    padding: 10px;
     width: 60%;
     margin-bottom: 10px;
     border: 1px solid grey;
     border-radius: 20px;
+    font-weight: 600;
+    background-color: #1877f2;
+    border: none;
 }
-.input-fields:focus {
-    
-    border: 1px solid rgb(90, 129, 222);
-    outline: none;
-}
-/* .input-fields:hover {
-    
-    background-color: black;
-} */
-.button-fields:hover {
-    background-color: black;
+.login-anchor-tag a {
     color: white;
 }
-.newPage {
-    display: flex;
-    flex-direction: column;
+.login-anchor-tag:hover {
+    background-color: #086cee;
+}
+.password-anchor-tag {
+    text-align: center;
+    margin: auto;
+    padding: 10px;
+    width: 60%;
+    margin-bottom: 10px;
+    border: 1px solid grey;
+    border-radius: 20px;
+    font-weight: 600;
+    border: none;
+}
+.password-anchor-tag a {
+    color: black;
+}
+.password-anchor-tag:hover {
+    background-color: rgb(247, 244, 244);
+}
+.new-account-anchor-tag {
+    width: 60%;
+    margin:auto;
+    margin-top: 70px;
+    padding: 10px;
+    border: 1px solid #1877f2;
+    border-radius: 20px;
+    text-align: center;
+    font-weight: 600;
+}
+.new-account-anchor-tag:hover {
+
+    background-color: #eff1f3
+}
+.new-account-anchor-tag a {
+    color: #1877f2;
+}
+a {
+    display: block;
+    text-decoration: none;
+}
+.firstNameErorr {
+    display: none;
+}
+.SurNameErorr {
+    display: none;
+}
+.emailError {
+    display: none;
+}
+.passwordError {
+    display: none;
 }
