@@ -6,6 +6,8 @@ let createNewAccount = document.querySelector("#create-Newaccount");
 // let logIn = document.querySelector("#login");
 
 let loginHtml = formContainer.innerHTML;
+let userEmailStore = null;
+let userPasswordStore = null;
 
 createNewAccount.addEventListener("click", function (e) {
   e.preventDefault();
@@ -18,13 +20,13 @@ createNewAccount.addEventListener("click", function (e) {
         <form class="new-accoutn-form">
           <div>
             <input type="text" class="userName" placeholder="First name" />
-            <small class="firstNameErorr">name should be more than 2</small>
+            <small class="firstNameErorr">character should be more than 2</small>
             <input type="text" class="userSurname" placeholder="Surname" />
-            <small class="SurNameErorr">surname should be more than 2</small>
+            <small class="SurNameErorr">character should be more than 2</small>
           </div>
           <div>
-            <small>Select date of birth</small>
-            <input type="date" />
+
+
           </div>
           <div>
             <small>Select Gender</small><br />
@@ -53,27 +55,26 @@ createNewAccount.addEventListener("click", function (e) {
       formContainer.innerHTML = newHtml;
     }
   };
+
   let userFirstName = document.querySelector(".userName");
   let userSurName = document.querySelector(".userSurname");
   let firstNameError = document.querySelector(".firstNameErorr");
   let surNameError = document.querySelector(".SurNameErorr");
 
   userFirstName.addEventListener("input", function () {
-    if (userFirstName.value.length <= 2) {
-      firstNameError.style.display = "inline";
-    } else {
+    if (userFirstName.value.length === 0 || userFirstName.value.length > 2) {
       firstNameError.style.display = "none";
+    } else {
+      firstNameError.style.display = "inline";
     }
   });
   userSurName.addEventListener("input", function () {
-    if (userSurName.value.length <= 2) {
-      surNameError.style.display = "inline";
-    } else {
+    if (userSurName.value.length === 0 || userSurName.value.length > 2) {
       surNameError.style.display = "none";
+    } else {
+      surNameError.style.display = "inline";
     }
   });
-
-  
 
   let emailField = document.querySelector("#email");
   let passwordField = document.querySelector("#password");
@@ -83,28 +84,30 @@ createNewAccount.addEventListener("click", function (e) {
   const passwordRegex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
-  emailField.addEventListener("input", function () {
+  emailField.addEventListener("input", function (e) {
 
     if (emailRegex.test(emailField.value)) {
       userEmail = emailField.value;
       emailError.style.display = "none";
-    } 
-    else {
+    } else {
       emailError.style.display = "inline";
     }
 
+     userEmailStore = e.target.value
+    
   });
-  passwordField.addEventListener("input", function () {
-
+  passwordField.addEventListener("input", function (e) {
     if (passwordRegex.test(passwordField.value)) {
-
       userPassword = passwordField.value;
       passwordError.style.display = "none";
-    } 
-    else {
+    } else {
       passwordError.style.display = "inline";
     }
+    
+     userPasswordStore = e.target.value
 
+    console.log(userPasswordStore);
+    
   });
 
   signUptheForm.addEventListener("click", function (e) {
@@ -114,20 +117,42 @@ createNewAccount.addEventListener("click", function (e) {
     if (userFirstName.value.length <= 2) {
       firstNameError.style.display = "inline";
       isValid = false;
-    } 
-    else {
+    } else {
       firstNameError.style.display = "none";
     }
     if (userSurName.value.length <= 2) {
       surNameError.style.display = "inline";
       isValid = false;
-    } 
-    else {
+    } else {
       surNameError.style.display = "none";
     }
 
     if (isValid) {
       alert("Account Created Successfully");
     }
-  }); 
+  });
+  
 });
+
+// Form Login Logic
+
+let logInEmail = document.querySelector("#loginemail")
+let logInPassword = document.querySelector("#loginpassword")
+let logIn = document.querySelector("#login")
+
+logIn.addEventListener("click", function(newt) {
+
+    newt.preventDefault();
+    let loginSuccessfull = document.querySelector("#loginsuccessful")
+    // loginSuccessfull.style.display = "block";
+
+    // if(userEmailStore.value === logInEmail.value && userPasswordStore.value=== logInPassword.value) {
+
+    // }
+    // else {
+
+      
+      
+      
+    // }
+})
