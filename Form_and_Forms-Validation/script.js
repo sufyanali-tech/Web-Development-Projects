@@ -9,6 +9,27 @@ let loginHtml = formContainer.innerHTML;
 let userEmailStore = null;
 let userPasswordStore = null;
 
+let logInEmail = document.querySelector("#loginemail")
+let logInPassword = document.querySelector("#loginpassword")
+let logIn = document.querySelector("#login")
+
+logIn.addEventListener("click", function (e) {
+
+  e.preventDefault();
+
+  history.pushState({ page: "login" }, "", "/login");
+
+  let loginSuccessfull = document.querySelector("#loginsuccessful")
+  let body = document.querySelector("body")
+
+  let logInNewPage = body.innerHTML = `
+    
+    <div id="loginsuccessful">
+      <h1>Login Successful ✔</h1>
+    </div>
+    `
+})
+
 createNewAccount.addEventListener("click", function (e) {
   e.preventDefault();
 
@@ -48,13 +69,6 @@ createNewAccount.addEventListener("click", function (e) {
         </form>
       </div>
         `);
-  window.onpopstate = function (event) {
-    if (!event.state || event.state.page !== "signup") {
-      formContainer.innerHTML = loginHtml;
-    } else if (event.state || event.state.page === "signup") {
-      formContainer.innerHTML = newHtml;
-    }
-  };
 
   let userFirstName = document.querySelector(".userName");
   let userSurName = document.querySelector(".userSurname");
@@ -81,8 +95,7 @@ createNewAccount.addEventListener("click", function (e) {
   let emailError = document.querySelector(".emailError");
   let passwordError = document.querySelector(".passwordError");
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  const passwordRegex =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
   emailField.addEventListener("input", function (e) {
 
@@ -93,8 +106,8 @@ createNewAccount.addEventListener("click", function (e) {
       emailError.style.display = "inline";
     }
 
-     userEmailStore = e.target.value
-    
+    userEmailStore = e.value
+
   });
   passwordField.addEventListener("input", function (e) {
     if (passwordRegex.test(passwordField.value)) {
@@ -103,11 +116,11 @@ createNewAccount.addEventListener("click", function (e) {
     } else {
       passwordError.style.display = "inline";
     }
-    
-     userPasswordStore = e.target.value
+
+    userPasswordStore = e.value
 
     console.log(userPasswordStore);
-    
+
   });
 
   signUptheForm.addEventListener("click", function (e) {
@@ -131,28 +144,13 @@ createNewAccount.addEventListener("click", function (e) {
       alert("Account Created Successfully");
     }
   });
-  
+
 });
 
-// Form Login Logic
-
-let logInEmail = document.querySelector("#loginemail")
-let logInPassword = document.querySelector("#loginpassword")
-let logIn = document.querySelector("#login")
-
-logIn.addEventListener("click", function(newt) {
-
-    newt.preventDefault();
-    let loginSuccessfull = document.querySelector("#loginsuccessful")
-    // loginSuccessfull.style.display = "block";
-
-    // if(userEmailStore.value === logInEmail.value && userPasswordStore.value=== logInPassword.value) {
-
-    // }
-    // else {
-
-      
-      
-      
-    // }
-})
+// window.onpopstate = function (event) {
+//     if (!event.state || event.state.page !== "signup") {
+//       formContainer.innerHTML = loginHtml;
+//     } else if (event.state || event.state.page === "signup") {
+//       formContainer.innerHTML = newHtml;
+//     }
+//   };

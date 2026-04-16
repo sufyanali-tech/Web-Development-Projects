@@ -10,7 +10,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: black;
+    background-color: rgb(228, 228, 228);
 }
 .form-container {
     width: 600px;
@@ -125,5 +125,5 @@ a {
     justify-content: center;
     align-items: center;
     color: rgb(92, 133, 92);
-    display: none;
+    /* display: none; */
 }
