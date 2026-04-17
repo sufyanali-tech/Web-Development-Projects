@@ -3,19 +3,17 @@ let userPassword = null;
 
 let formContainer = document.querySelector(".form-container");
 let createNewAccount = document.querySelector("#create-Newaccount");
-// let logIn = document.querySelector("#login");
 
 let loginHtml = formContainer.innerHTML;
-// console.log(loginHtml);
 
 let userEmailStore = null;
 let userPasswordStore = null;
-let newHtml = ""
+let logInNewPage = "null"
+let createNewAccountHtml = "null"
 
 let logInEmail = document.querySelector("#loginemail")
 let logInPassword = document.querySelector("#loginpassword")
 let logIn = document.querySelector("#login")
-
 
 logIn.addEventListener("click", function (e) {
 
@@ -26,34 +24,23 @@ logIn.addEventListener("click", function (e) {
   let loginSuccessfull = document.querySelector("#loginsuccessful")
   let body = document.querySelector("body")
 
-  let logInNewPage = body.innerHTML = `
+  logInNewPage = formContainer.innerHTML = `
     
     <div id="loginsuccessful">
       <h1>Login Successful ✔</h1>
     </div>
     `
 })
-
 // Document of Create new Account 
-
-let userFirstName = document.querySelector(".userName");
-let userSurName = document.querySelector(".userSurname");
-let firstNameError = document.querySelector(".firstNameErorr");
-let surNameError = document.querySelector(".SurNameErorr");
-
-let emailField = document.querySelector("#email");
-let passwordField = document.querySelector("#password");
-let emailError = document.querySelector(".emailError");
-let passwordError = document.querySelector(".passwordError");
-const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
 createNewAccount.addEventListener("click", function (e) {
   e.preventDefault();
 
   history.pushState({ page: "signup" }, "", "/signup");
 
-  newHtml = formContainer.innerHTML = `
+
+
+  createNewAccountHtml = formContainer.innerHTML = `
        <div class="create-newAccount">
         <h3>Enter your personal infomation</h3>
         <form class="new-accoutn-form">
@@ -79,11 +66,23 @@ createNewAccount.addEventListener("click", function (e) {
             <a href="#" id="signup-form">SignUp</a>
           </div>
         </form>
-      </div>
-        `;
+      </div>`
+      
+let userFirstName = document.querySelector(".userName");
+let userSurName = document.querySelector(".userSurname");
+let firstNameError = document.querySelector(".firstNameErorr");
+let surNameError = document.querySelector(".SurNameErorr");
+
+let emailField = document.querySelector("#email");
+let passwordField = document.querySelector("#password");
+let emailError = document.querySelector(".emailError");
+let passwordError = document.querySelector(".passwordError");
+const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
 
   userFirstName.addEventListener("input", function () {
+
     if (userFirstName.value.length === 0 || userFirstName.value.length > 2) {
       firstNameError.style.display = "none";
     } else {
@@ -98,7 +97,7 @@ createNewAccount.addEventListener("click", function (e) {
     }
   });
 
-  emailField.addEventListener("input", function (e) {
+  emailField.addEventListener("input", function () {
 
     if (emailRegex.test(emailField.value)) {
       userEmail = emailField.value;
@@ -106,11 +105,11 @@ createNewAccount.addEventListener("click", function (e) {
     } else {
       emailError.style.display = "inline";
     }
-
-    userEmailStore = e.value
+    userEmailStore = emailField.value    
   });
 
-  passwordField.addEventListener("input", function (e) {
+  passwordField.addEventListener("input", function () {
+    
     if (passwordRegex.test(passwordField.value)) {
       userPassword = passwordField.value;
       passwordError.style.display = "none";
@@ -118,37 +117,33 @@ createNewAccount.addEventListener("click", function (e) {
       passwordError.style.display = "inline";
     }
 
-    userPasswordStore = e.value
-    console.log(userPasswordStore);
+    userPasswordStore = passwordField.value
   });
 
-  signUptheForm.addEventListener("click", function (e) {
-    e.preventDefault();
-    let isValid = true;
+  // signUptheForm.addEventListener("click", function (e) {
+  //   e.preventDefault();
+  //   let isValid = true;
 
-    if (userFirstName.value.length <= 2) {
-      firstNameError.style.display = "inline";
-      isValid = false;
-    } else {
-      firstNameError.style.display = "none";
-    }
-    if (userSurName.value.length <= 2) {
-      surNameError.style.display = "inline";
-      isValid = false;
-    } else {
-      surNameError.style.display = "none";
-    }
-    if (isValid) {
-      alert("Account Created Successfully");
-    }
-  });
+  //   if (userFirstName.value.length <= 2) {
+  //     firstNameError.style.display = "inline";
+  //     isValid = false;
+  //   } else {
+  //     firstNameError.style.display = "none";
+  //   }
+  //   if (userSurName.value.length <= 2) {
+  //     surNameError.style.display = "inline";
+  //     isValid = false;
+  //   } else {
+  //     surNameError.style.display = "none";
+  //   }
+  //   if (isValid) {
+  //     alert("Account Created Successfully");
+  //   }
+  // });
 
 });
 
 window.onpopstate = function (event) {
-
-  // console.log(event.state.page);x
-
 
   if (!event.state) {
 
@@ -158,16 +153,12 @@ window.onpopstate = function (event) {
   const page = event.state.page;
   if (page === "signup") {
 
-    formContainer.innerHTML = newHtml
+    formContainer.innerHTML = createNewAccountHtml
     return
   }
   if (page === "login") {
 
-    formContainer.innerHTML = `
-      <div id="loginsuccessful">
-        <h1>Login Successful ✔</h1>
-      </div>
-    `;
+    formContainer.innerHTML = logInNewPage
     return;
   }
 
