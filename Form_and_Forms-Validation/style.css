@@ -125,6 +125,17 @@ a {
 
     border-color: rgb(143, 137, 137);   
 }
+
+#gender-container select {
+
+    padding: 13px;
+    width: 365px;
+    border: 1px solid grey;
+    border-radius: 10px;
+    outline: none;
+}
+
+
 .firstNameErorr {
     display: none;
 }

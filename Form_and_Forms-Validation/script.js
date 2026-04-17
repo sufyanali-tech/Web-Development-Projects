@@ -51,12 +51,19 @@ createNewAccount.addEventListener("click", function (e) {
             <input type="text" id="userInputFields" class="userSurname" placeholder="Surname" />
             <small class="SurNameErorr">character should be more than 2</small>
           </div>
-          <div>
-            <small>Select Gender</small><br />
-            <input type="radio" name="gender-check" value="male" /> Male <br />
-            <input type="radio" name="gender-check" value="female" /> Female
-            
-          </div>
+          
+
+          <div id="gender-container">
+            <small>Gender</small>
+           <div id="select-gender">
+              <select id="gender">
+                <option value="" hidden>Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="custom">Custom</option>
+              </select>
+            </div>
+    </div>
           <div>
             <input type="email" id="email"placeholder="Email address or phone number" />
             <small class="emailError">invalid email</small>
@@ -68,18 +75,18 @@ createNewAccount.addEventListener("click", function (e) {
           </div>
         </form>
       </div>`
-      
-let userFirstName = document.querySelector(".userName");
-let userSurName = document.querySelector(".userSurname");
-let firstNameError = document.querySelector(".firstNameErorr");
-let surNameError = document.querySelector(".SurNameErorr");
 
-let emailField = document.querySelector("#email");
-let passwordField = document.querySelector("#password");
-let emailError = document.querySelector(".emailError");
-let passwordError = document.querySelector(".passwordError");
-const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  let userFirstName = document.querySelector(".userName");
+  let userSurName = document.querySelector(".userSurname");
+  let firstNameError = document.querySelector(".firstNameErorr");
+  let surNameError = document.querySelector(".SurNameErorr");
+
+  let emailField = document.querySelector("#email");
+  let passwordField = document.querySelector("#password");
+  let emailError = document.querySelector(".emailError");
+  let passwordError = document.querySelector(".passwordError");
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
 
   userFirstName.addEventListener("input", function () {
@@ -106,11 +113,11 @@ const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$
     } else {
       emailError.style.display = "inline";
     }
-    userEmailStore = emailField.value    
+    userEmailStore = emailField.value
   });
 
   passwordField.addEventListener("input", function () {
-    
+
     if (passwordRegex.test(passwordField.value)) {
       userPassword = passwordField.value;
       passwordError.style.display = "none";
