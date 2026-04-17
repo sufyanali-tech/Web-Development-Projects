@@ -44,10 +44,11 @@ createNewAccount.addEventListener("click", function (e) {
        <div class="create-newAccount">
         <h3>Enter your personal infomation</h3>
         <form class="new-accoutn-form">
-          <div>
-            <input type="text" class="userName" placeholder="First name" />
+        <small>Name</small>
+          <div id="InputFields" > 
+            <input type="text" id="userInputFields" class="userName" placeholder="First name" />
             <small class="firstNameErorr">character should be more than 2</small>
-            <input type="text" class="userSurname" placeholder="Surname" />
+            <input type="text" id="userInputFields" class="userSurname" placeholder="Surname" />
             <small class="SurNameErorr">character should be more than 2</small>
           </div>
           <div>
@@ -116,7 +117,6 @@ const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$
     } else {
       passwordError.style.display = "inline";
     }
-
     userPasswordStore = passwordField.value
   });
 

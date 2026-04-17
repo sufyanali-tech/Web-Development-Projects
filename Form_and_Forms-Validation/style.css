@@ -103,6 +103,28 @@ a {
     display: block;
     text-decoration: none;
 }
+
+/* Create New Accout CSS */
+#InputFields {
+
+    display: flex;
+    flex-direction: row;
+    /* margin: auto; */
+    gap: 10px;
+    width: fit-content;
+}
+#userInputFields {
+
+    padding: 13px;
+    border-radius: 10px;
+    outline: none;
+    /* border-color: rgb(143, 137, 137); */
+    border: 1px solid rgb(209, 208, 208)
+}
+#userInputFields:hover {
+
+    border-color: rgb(143, 137, 137);   
+}
 .firstNameErorr {
     display: none;
 }
