@@ -6,12 +6,16 @@ let createNewAccount = document.querySelector("#create-Newaccount");
 // let logIn = document.querySelector("#login");
 
 let loginHtml = formContainer.innerHTML;
+// console.log(loginHtml);
+
 let userEmailStore = null;
 let userPasswordStore = null;
+let newHtml = ""
 
 let logInEmail = document.querySelector("#loginemail")
 let logInPassword = document.querySelector("#loginpassword")
 let logIn = document.querySelector("#login")
+
 
 logIn.addEventListener("click", function (e) {
 
@@ -30,12 +34,26 @@ logIn.addEventListener("click", function (e) {
     `
 })
 
+// Document of Create new Account 
+
+let userFirstName = document.querySelector(".userName");
+let userSurName = document.querySelector(".userSurname");
+let firstNameError = document.querySelector(".firstNameErorr");
+let surNameError = document.querySelector(".SurNameErorr");
+
+let emailField = document.querySelector("#email");
+let passwordField = document.querySelector("#password");
+let emailError = document.querySelector(".emailError");
+let passwordError = document.querySelector(".passwordError");
+const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
 createNewAccount.addEventListener("click", function (e) {
   e.preventDefault();
 
   history.pushState({ page: "signup" }, "", "/signup");
 
-  let newHtml = (formContainer.innerHTML = `
+  newHtml = formContainer.innerHTML = `
        <div class="create-newAccount">
         <h3>Enter your personal infomation</h3>
         <form class="new-accoutn-form">
@@ -46,34 +64,24 @@ createNewAccount.addEventListener("click", function (e) {
             <small class="SurNameErorr">character should be more than 2</small>
           </div>
           <div>
-
-
-          </div>
-          <div>
             <small>Select Gender</small><br />
             <input type="radio" name="gender-check" value="male" /> Male <br />
             <input type="radio" name="gender-check" value="female" /> Female
-            <br />
+            
           </div>
           <div>
-
             <input type="email" id="email"placeholder="Email address or phone number" />
             <small class="emailError">invalid email</small>
-            <input type="password" id="password" placeholder="password" />
-            <small class="passwordError">invalid password</small>
-             
+            <input type="password" id="password" placeholder="password"/>
+            <small class="passwordError">invalid password</small> 
           </div>
           <div class="signup-button">
             <a href="#" id="signup-form">SignUp</a>
           </div>
         </form>
       </div>
-        `);
+        `;
 
-  let userFirstName = document.querySelector(".userName");
-  let userSurName = document.querySelector(".userSurname");
-  let firstNameError = document.querySelector(".firstNameErorr");
-  let surNameError = document.querySelector(".SurNameErorr");
 
   userFirstName.addEventListener("input", function () {
     if (userFirstName.value.length === 0 || userFirstName.value.length > 2) {
@@ -90,13 +98,6 @@ createNewAccount.addEventListener("click", function (e) {
     }
   });
 
-  let emailField = document.querySelector("#email");
-  let passwordField = document.querySelector("#password");
-  let emailError = document.querySelector(".emailError");
-  let passwordError = document.querySelector(".passwordError");
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-
   emailField.addEventListener("input", function (e) {
 
     if (emailRegex.test(emailField.value)) {
@@ -107,8 +108,8 @@ createNewAccount.addEventListener("click", function (e) {
     }
 
     userEmailStore = e.value
-
   });
+
   passwordField.addEventListener("input", function (e) {
     if (passwordRegex.test(passwordField.value)) {
       userPassword = passwordField.value;
@@ -118,9 +119,7 @@ createNewAccount.addEventListener("click", function (e) {
     }
 
     userPasswordStore = e.value
-
     console.log(userPasswordStore);
-
   });
 
   signUptheForm.addEventListener("click", function (e) {
@@ -139,7 +138,6 @@ createNewAccount.addEventListener("click", function (e) {
     } else {
       surNameError.style.display = "none";
     }
-
     if (isValid) {
       alert("Account Created Successfully");
     }
@@ -147,10 +145,31 @@ createNewAccount.addEventListener("click", function (e) {
 
 });
 
-// window.onpopstate = function (event) {
-//     if (!event.state || event.state.page !== "signup") {
-//       formContainer.innerHTML = loginHtml;
-//     } else if (event.state || event.state.page === "signup") {
-//       formContainer.innerHTML = newHtml;
-//     }
-//   };
+window.onpopstate = function (event) {
+
+  // console.log(event.state.page);x
+
+
+  if (!event.state) {
+
+    formContainer.innerHTML = loginHtml
+    return
+  }
+  const page = event.state.page;
+  if (page === "signup") {
+
+    formContainer.innerHTML = newHtml
+    return
+  }
+  if (page === "login") {
+
+    formContainer.innerHTML = `
+      <div id="loginsuccessful">
+        <h1>Login Successful ✔</h1>
+      </div>
+    `;
+    return;
+  }
+
+  formContainer.innerHTML = loginHtml;
+}
