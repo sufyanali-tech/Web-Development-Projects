@@ -41,28 +41,29 @@ createNewAccount.addEventListener("click", function (e) {
        <div class="create-newAccount">
         <h3>Enter your personal infomation</h3>
         <form class="new-accoutn-form">
-        <div id="input-container">
-          <small>Name</small>
-            <div id="user-input-fields" > 
-              <input type="text" id="userInputFields" class="userName" placeholder="First name" />
-              <small class="firstNameErorr">character should be more than 2</small>
-              <input type="text" id="userInputFields" class="userSurname" placeholder="Surname" />
-              <small class="SurNameErorr">character should be more than 2</small>
+
+          <div id="name-container">
+            <small>Name</small>
+              <div id="InputFields" > 
+                <input type="text" id="userInputFields" class="userName" placeholder="First name" />
+                <small class="firstNameErorr">character should be more than 2</small>
+                <input type="text" id="userInputFields" class="userSurname" placeholder="Surname" />
+                <small class="SurNameErorr">character should be more than 2</small>
             </div>
-          </div>
-          <div id="dob-container">
-            <small>Date of birth</small>
-              <div id="dob-selection-container">
-                <select id="day-selection">
-                  <option value="" hidden >Day</option>
-                </select>
-                <select id="month-selection">
-                  <option value="" hidden>Month</option>
-                </select>
-                <select id="year-selection">
-                  <option value="" hidden>Year</option>
-                </select>
-              </div>
+          </div> 
+            <div id="dob-container">
+              <small>Date of birth</small>
+                <div id="dob-selection-container">
+                  <select id="day-selection">
+                    <option value="" hidden >Day</option>
+                  </select>
+                  <select id="month-selection">
+                    <option value="" hidden>Month</option>
+                  </select>
+                  <select id="year-selection">
+                    <option value="" hidden>Year</option>
+                  </select>
+                </div>
             </div>
           <div id="gender-container">
             <small>Gender</small>
@@ -73,16 +74,16 @@ createNewAccount.addEventListener("click", function (e) {
                 <option value="custom">Custom</option>
               </select>
           </div>
-          <div id="input-container">
+            <div id="input-container">
               <small>Email</small>
               <input type="email" id="email"placeholder="Email address or phone number" />
               <small class="emailError">invalid email</small>
               <small>Password</small>
-              <input type="password" id="password" placeholder="password"/>
+              <input type="password" id="password" placeholder="Password"/>
               <small class="passwordError">invalid password</small> 
-          </div>
+            </div>
           <div class="signup-button">
-            <a href="#" id="signup-form">SignUp</a>
+            <a href="#" id="signup-form">Create account</a>
           </div>
         </form>
       </div>`;

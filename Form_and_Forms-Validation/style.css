@@ -33,10 +33,6 @@ body {
     border-radius: 10px;
     outline: none;
 }
-/* .input-fields:focus {
-    
-    border-color: #1877f2;
-} */
 .input-fields:hover {
 
     border-color: rgb(143, 137, 137);
@@ -105,10 +101,38 @@ a {
 }
 
 /* Create New Accout CSS */
-#user-input-fields {
+#name-container small:not(.firstNameErorr):not(.SurNameErorr) {
+
+    margin-left: 140px;
+}
+#InputFields {
 
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+}
+#InputFields input {
+
+    width: 155px;
+    padding: 13px;
+    border: 1px solid rgb(209, 208, 208);
+    border-radius: 10px;
+    outline: none;
+    margin-bottom: 10px;
+}
+#InputFields input:hover {
+
+    border-color: rgb(143, 137, 137);
+}
+#InputFields input:focus {
+
+    border-color: black;
+}
+
+#dob-container small {
+
+    margin-left: 140px;
 }
 #dob-selection-container {
 
@@ -117,22 +141,33 @@ a {
     justify-content: center;
     gap: 30px;
 }
+
 #dob-selection-container select {
 
     padding: 13px;
     border-radius: 10px;
     border: 1px solid rgb(209, 208, 208);
     outline: none;
+    margin-bottom: 10px;
+
 }
 #dob-selection-container select:hover {
 
     border-color: rgb(143, 137, 137);   
+}
+#dob-selection-container select:focus {
+
+    border-color: black;   
 }
 #gender-container  {
 
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+#gender-container small {
+
+  width: 320px;
 }
 #gender-container select {
 
@@ -141,13 +176,17 @@ a {
     border: 1px solid rgb(209, 208, 208);
     border-radius: 10px;
     outline: none;
-}
-#gender-container small {
+    margin-bottom: 10px;
 
-  width: 320px;
-  text-align: left;
 }
+#gender-container select:hover {
 
+    border-color: rgb(143, 137, 137);
+}
+#gender-container select:focus {
+
+    border-color: black;
+}
 #input-container {
 
     display: flex;
@@ -161,6 +200,8 @@ a {
     outline: none;
     border: 1px solid rgb(209, 208, 208);
     width: 320px;   
+    margin-bottom: 10px;
+
 }
 #input-container small:not(.emailError):not(.passwordError) {
     width: 320px;        /* input jitna wide */
