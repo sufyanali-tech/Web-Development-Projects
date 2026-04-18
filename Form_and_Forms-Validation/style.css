@@ -105,40 +105,100 @@ a {
 }
 
 /* Create New Accout CSS */
-#InputFields {
+#user-input-fields {
+
+    display: flex;
+    flex-direction: column;
+}
+#dob-selection-container {
 
     display: flex;
     flex-direction: row;
-    /* margin: auto; */
-    gap: 10px;
-    width: fit-content;
+    justify-content: center;
+    gap: 30px;
 }
-#userInputFields {
+#dob-selection-container select {
 
     padding: 13px;
     border-radius: 10px;
+    border: 1px solid rgb(209, 208, 208);
     outline: none;
-    /* border-color: rgb(143, 137, 137); */
-    border: 1px solid rgb(209, 208, 208)
 }
-#userInputFields:hover {
+#dob-selection-container select:hover {
 
     border-color: rgb(143, 137, 137);   
 }
+#gender-container  {
 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 #gender-container select {
 
     padding: 13px;
-    width: 365px;
-    border: 1px solid grey;
+    width: 320px;
+    border: 1px solid rgb(209, 208, 208);
     border-radius: 10px;
     outline: none;
 }
+#gender-container small {
 
+  width: 320px;
+  text-align: left;
+}
+
+#input-container {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#input-container input {
+
+    padding: 13px;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid rgb(209, 208, 208);
+    width: 320px;   
+}
+#input-container small:not(.emailError):not(.passwordError) {
+    width: 320px;        /* input jitna wide */
+    text-align: left;    /* left mein karo */
+}
+#input-container input:hover {
+
+    border-color: rgb(143, 137, 137);
+}
+#input-container input:focus {
+
+    border-color: black;
+}
+.signup-button {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.signup-button a {
+
+    margin-top: 10px;
+    width: 320px;
+    padding: 10px;
+    background-color: #1877f2;
+    text-align: center;
+    color: white;
+    border-radius: 20px;
+    font-weight: 600;
+}
+.signup-button a:hover {
+ 
+    background-color: #086cee;
+}
 
 .firstNameErorr {
     display: none;
-}
+} 
 .SurNameErorr {
     display: none;
 }
@@ -150,6 +210,7 @@ a {
 }
 
 /* Login Successfull */
+  
 #loginsuccessful {
 
     display: flex;
