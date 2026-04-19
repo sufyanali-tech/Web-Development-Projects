@@ -10,6 +10,8 @@ let logInPasswordStore = null;
 let logInNewPage = "null";
 let createNewAccountHtml = "null";
 let accountCreated = null;
+let forgettenHtml = null;
+let forgettenPassword = null;
 
 let firstNameTrue = null;
 let surNameTrue = null;
@@ -29,14 +31,18 @@ formContainer.addEventListener("input", function (e) {
 
     logInEmailStore = e.target.value
   }
-
-  let firstNameError = document.querySelector("#firstNameErorr");
-  let surNameError = document.querySelector("#SurNameErorr");
-
   if (e.target.id === "loginpassword") {
 
     logInPasswordStore = e.target.value
   }
+  if (e.target.id === "forgetPasswordEmail") {
+    
+    forgettenPassword = e.target.value    
+  }
+
+  let firstNameError = document.querySelector("#firstNameErorr");
+  let surNameError = document.querySelector("#SurNameErorr");
+
   if (e.target.id === "userFirstName" || e.target.id === "userSurName") {
 
     if (e.target.value.length === 0 || e.target.value.length > 2) {
@@ -78,6 +84,18 @@ formContainer.addEventListener("input", function (e) {
 formContainer.addEventListener("click", function (e) {
   e.preventDefault();
 
+
+  function login() {
+
+    history.pushState({ page: "login" }, "", "/login");
+
+      logInNewPage = formContainer.innerHTML = `
+    <div id="loginsuccessful">
+      <h1>Login Successful ✔</h1>
+    </div>
+    `;
+  }
+
   if (e.target.id === "login") {
     let emailandPasswordError = document.querySelector("#emailandpasswordError")
 
@@ -97,14 +115,8 @@ formContainer.addEventListener("click", function (e) {
       return
     }
     if (signUpEmailStore === logInEmailStore && signUpPasswordStore === logInPasswordStore) {
-
-      history.pushState({ page: "login" }, "", "/login");
-
-      logInNewPage = formContainer.innerHTML = `
-    <div id="loginsuccessful">
-      <h1>Login Successful ✔</h1>
-    </div>
-    `;
+      
+      login();
     }
   }
   if (e.target.id === "create-Newaccount") {
@@ -234,6 +246,30 @@ formContainer.addEventListener("click", function (e) {
       `
     }
   }
+  if (e.target.id === "forgetten-password") {
+
+    history.pushState({ page: "forgetpassword" }, "", "/forgetpassword");
+    forgettenHtml = formContainer.innerHTML = `
+
+      <div id="forgetten-password-container">
+        <small id="label">Enter your email</small>      
+            <input type="email" id="forgetPasswordEmail" placeholder="Email address or phone number">
+            <small id="emailErrorLabel" >Given email is not matching try again</small>          
+            <a href="#" id="loginwithoutpassword">Login</a>
+      </div>`
+  }
+  if (e.target.id === "loginwithoutpassword") {
+    
+    let emailErrorforPassword = document.querySelector("#emailErrorLabel")
+    if (forgettenPassword === signUpEmailStore) {
+      
+      login();
+    }
+    else {
+
+      emailErrorforPassword.style.display = "inline"
+    }
+  }
   if (e.target.id === "back-to-home") {
 
     history.replaceState({ page: "home" }, "", "/");
@@ -258,5 +294,9 @@ window.onpopstate = function (event) {
   if (page === "accountcreated") {
 
     formContainer.innerHTML = accountCreated
+  }
+  if (page === "forgetpassword") {
+
+    formContainer.innerHTML = forgettenHtml
   }
 };

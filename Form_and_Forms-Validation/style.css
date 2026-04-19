@@ -52,6 +52,60 @@ body {
 .password-error {
     display: none;
 }
+#label{
+
+    width: 60%;
+    text-align: left;
+    margin-bottom: 10px;
+    font-weight: 450;
+}
+#forgetten-password-container {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+}
+#forgetten-password-container input{
+
+    width: 60%;
+    padding: 15px;
+    border: 1px solid rgb(209, 208, 208);
+    border-radius: 10px;
+    outline: none;
+    margin-bottom: 20px;
+}
+#emailErrorLabel {
+
+    color: red;
+    margin-bottom: 45px;
+    text-align: left;
+    width: 60%;
+    display: none;
+}
+#forgetten-password-container input:hover{
+
+    border-color: rgb(143, 137, 137);    
+}
+#forgetten-password-container input:focus{
+
+    border-color: black;    
+}
+#forgetten-password-container a{
+
+    width: 60%;
+    padding: 10px;
+    text-align: center;
+    color: white;
+    font-weight: 600;
+    border-radius: 20px;
+    background-color: #1877f2;
+}
+#forgetten-password-container a:hover{
+
+    border-color:#0871fc;    
+}
 .login-anchor-tag {
     text-align: center;
     margin: auto;
