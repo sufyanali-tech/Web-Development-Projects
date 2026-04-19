@@ -4,7 +4,6 @@
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     box-sizing: border-box;
 }
-
 body {
     height: 100vh;
     display: flex;
@@ -22,11 +21,15 @@ body {
     text-align: center;
     margin: 23px 0px;
 }
-.input-fields {
+#inputLogin-container {
+
     display: flex;
     flex-direction: column;
+    gap: 20px;
+    margin-bottom: 70px;
+}
+.input-fields {
     margin: auto;
-    margin-bottom: 30px;
     padding: 15px;
     width: 60%;
     border: 1px solid rgb(209, 208, 208);
@@ -36,6 +39,12 @@ body {
 .input-fields:hover {
 
     border-color: rgb(143, 137, 137);
+}
+#inputLogin-container small {
+
+    text-align: center;
+    color: red;
+    display: none;
 }
 .email-error {
     display: none;
@@ -99,37 +108,47 @@ a {
     display: block;
     text-decoration: none;
 }
-
-/* Create New Accout CSS */
-#name-container small:not(.firstNameErorr):not(.SurNameErorr) {
-
-    margin-left: 140px;
+#name-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#name-container > small {
+    width: 320px;
+    text-align: left;        
+    margin-bottom: 5px;      
 }
 #InputFields {
-
     display: flex;
-    flex-direction: row;
+    flex-direction: row;  
     justify-content: center;
     gap: 10px;
 }
-#InputFields input {
+.name-field {
+    display: flex;
+    flex-direction: column;  
+}
 
+.name-field input {
     width: 155px;
     padding: 13px;
     border: 1px solid rgb(209, 208, 208);
     border-radius: 10px;
     outline: none;
-    margin-bottom: 10px;
 }
-#InputFields input:hover {
-
+.name-field input:hover {
     border-color: rgb(143, 137, 137);
 }
-#InputFields input:focus {
 
+.name-field input:focus {
     border-color: black;
 }
-
+#firstNameErorr, #SurNameErorr {
+    display: none;
+    color: red;
+    font-size: 11px;
+    margin-top: 3px;
+}
 #dob-container small {
 
     margin-left: 140px;
@@ -141,7 +160,6 @@ a {
     justify-content: center;
     gap: 30px;
 }
-
 #dob-selection-container select {
 
     padding: 13px;
@@ -149,7 +167,6 @@ a {
     border: 1px solid rgb(209, 208, 208);
     outline: none;
     margin-bottom: 10px;
-
 }
 #dob-selection-container select:hover {
 
@@ -177,7 +194,6 @@ a {
     border-radius: 10px;
     outline: none;
     margin-bottom: 10px;
-
 }
 #gender-container select:hover {
 
@@ -201,11 +217,10 @@ a {
     border: 1px solid rgb(209, 208, 208);
     width: 320px;   
     margin-bottom: 10px;
-
 }
 #input-container small:not(.emailError):not(.passwordError) {
-    width: 320px;        /* input jitna wide */
-    text-align: left;    /* left mein karo */
+    width: 320px;       
+    text-align: left;    
 }
 #input-container input:hover {
 
@@ -236,22 +251,50 @@ a {
  
     background-color: #086cee;
 }
+#accountCreated-container {
 
-.firstNameErorr {
+    display: flex;
+    justify-content: center;
+    align-items: center;;
+    height: 100%;   
+}
+#accountCreated {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+    text-align: center;
+}
+#accountCreated a{
+    padding: 10px;
+    border: 1px solid #086cee;
+    background-color: #086cee;
+    border-radius: 20px;
+    color: white;
+    font-weight: 600;
+}
+#accountCreated {
+    color: rgb(92, 133, 92);
+}
+#firstNameErorr {
+    color: red;
     display: none;
+    font-size: 11px;
 } 
-.SurNameErorr {
+#SurNameErorr {
     display: none;
+    color: red;
+    font-size: 11px;
 }
-.emailError {
+#emailError {
+    color: red;
     display: none;
+    font-size: 11px;
 }
-.passwordError {
+#passwordError {
+    font-size: 11px;
     display: none;
+    color: red;
 }
-
-/* Login Successfull */
-  
 #loginsuccessful {
 
     display: flex;

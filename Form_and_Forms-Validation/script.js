@@ -1,54 +1,134 @@
-let userEmail = null;
-let userPassword = null;
-
 let formContainer = document.querySelector(".form-container");
 let createNewAccount = document.querySelector("#create-Newaccount");
 
 let loginHtml = formContainer.innerHTML;
 
-let userEmailStore = null;
-let userPasswordStore = null;
+let signUpEmailStore = null;
+let signUpPasswordStore = null;
+let logInEmailStore = null;
+let logInPasswordStore = null;
 let logInNewPage = "null";
 let createNewAccountHtml = "null";
+let accountCreated = null;
+
+let firstNameTrue = null;
+let surNameTrue = null;
+let emailTrue = null;
+let passwordTrue = null;
 
 let logInEmail = document.querySelector("#loginemail");
 let logInPassword = document.querySelector("#loginpassword");
 let logIn = document.querySelector("#login");
 
-logIn.addEventListener("click", function (e) {
+const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$#!%*?&]{8,}$/;
+// Document of Create new Account
+formContainer.addEventListener("input", function (e) {
+
+  if (e.target.id === "loginemail") {
+
+    logInEmailStore = e.target.value
+  }
+
+  let firstNameError = document.querySelector("#firstNameErorr");
+  let surNameError = document.querySelector("#SurNameErorr");
+
+  if (e.target.id === "loginpassword") {
+
+    logInPasswordStore = e.target.value
+  }
+  if (e.target.id === "userFirstName" || e.target.id === "userSurName") {
+
+    if (e.target.value.length === 0 || e.target.value.length > 2) {
+      firstNameError.style.display = "none";
+      firstNameTrue = true
+      surNameTrue = true
+    }
+    else {
+      firstNameError.style.display = "inline";
+      firstNameTrue = false
+      surNameTrue = false
+    }
+  }
+  if (e.target.id === "email") {
+    if (e.target.value.length === 0 || emailRegex.test(e.target.value)) {
+      emailError.style.display = "none";
+      emailTrue = true
+    } else {
+      emailError.style.display = "inline";
+      emailTrue = false
+    }
+    signUpEmailStore = e.target.value;
+  }
+  if (e.target.id === "password") {
+
+    if (e.target.value.length === 0 || passwordRegex.test(e.target.value)) {
+
+      passwordError.style.display = "none";
+      passwordTrue = true
+    }
+    else {
+      passwordError.style.display = "inline";
+      passwordTrue = false
+    }
+    signUpPasswordStore = e.target.value;
+  }
+});
+
+formContainer.addEventListener("click", function (e) {
   e.preventDefault();
 
-  history.pushState({ page: "login" }, "", "/login");
+  if (e.target.id === "login") {
+    let emailandPasswordError = document.querySelector("#emailandpasswordError")
 
-  let loginSuccessfull = document.querySelector("#loginsuccessful");
-  let body = document.querySelector("body");
+    if (signUpEmailStore !== logInEmailStore || signUpPasswordStore !== logInPasswordStore) {
 
-  logInNewPage = formContainer.innerHTML = `
-    
+      emailandPasswordError.style.display = "inline"
+      return
+    }
+    if (logInEmailStore === null || logInPasswordStore === null) {
+
+      emailandPasswordError.style.display = "inline"
+      return
+    }
+    if (signUpEmailStore === null || signUpPasswordStore === null) {
+
+      emailandPasswordError.style.display = "inline"
+      return
+    }
+    if (signUpEmailStore === logInEmailStore && signUpPasswordStore === logInPasswordStore) {
+
+      history.pushState({ page: "login" }, "", "/login");
+
+      logInNewPage = formContainer.innerHTML = `
     <div id="loginsuccessful">
       <h1>Login Successful ✔</h1>
     </div>
     `;
-});
-// Document of Create new Account
+    }
+  }
+  if (e.target.id === "create-Newaccount") {
 
-createNewAccount.addEventListener("click", function (e) {
-  e.preventDefault();
+    history.pushState({ page: "signup" }, "", "/signup");
 
-  history.pushState({ page: "signup" }, "", "/signup");
-
-  createNewAccountHtml = formContainer.innerHTML = `
+    createNewAccountHtml = formContainer.innerHTML = `
        <div class="create-newAccount">
         <h3>Enter your personal infomation</h3>
         <form class="new-accoutn-form">
 
           <div id="name-container">
             <small>Name</small>
-              <div id="InputFields" > 
-                <input type="text" id="userInputFields" class="userName" placeholder="First name" />
-                <small class="firstNameErorr">character should be more than 2</small>
-                <input type="text" id="userInputFields" class="userSurname" placeholder="Surname" />
-                <small class="SurNameErorr">character should be more than 2</small>
+              <div id="InputFields">
+                <div class="name-field">
+                  <input type="text" id="userFirstName" class="userName" placeholder="First name"/>
+                  <small id="firstNameErorr">character should be more than 2</small>
+                </div>
+
+                <div class="name-field">
+                  <input type="text" id="userSurName" class="userSurname" placeholder="Surname"/>
+                  <small id="SurNameErorr">character should be more than 2</small>
+                </div>
+              </div>
             </div>
           </div> 
             <div id="dob-container">
@@ -77,10 +157,10 @@ createNewAccount.addEventListener("click", function (e) {
             <div id="input-container">
               <small>Email</small>
               <input type="email" id="email"placeholder="Email address or phone number" />
-              <small class="emailError">invalid email</small>
+              <small id="emailError">Please enter a valid mobile number or email address.</small>
               <small>Password</small>
               <input type="password" id="password" placeholder="Password"/>
-              <small class="passwordError">invalid password</small> 
+              <small id="passwordError">Enter a combination of at least six numbers, letters and punctuation marks (such as ! and &).</small> 
             </div>
           <div class="signup-button">
             <a href="#" id="signup-form">Create account</a>
@@ -88,115 +168,77 @@ createNewAccount.addEventListener("click", function (e) {
         </form>
       </div>`;
 
-  let daySelection = document.querySelector("#day-selection");
-  let monthSelection = document.querySelector("#month-selection");
-  let yearSelection = document.querySelector("#year-selection");
+    let userFirstName = document.querySelector("#userFirstName");
+    let userSurName = document.querySelector("#userSurName");
 
-  for (let i = 1; i <= 31; i++) {
-    let option = document.createElement("option");
-    option.value = i;
-    option.textContent = i;
-    daySelection.appendChild(option);
+    let emailField = document.querySelector("#email");
+    let passwordField = document.querySelector("#password");
+    let emailError = document.querySelector("#emailError");
+    let passwordError = document.querySelector("#passwordError");
+
+
+    let daySelection = document.querySelector("#day-selection");
+    let monthSelection = document.querySelector("#month-selection");
+    let yearSelection = document.querySelector("#year-selection");
+
+    for (let i = 1; i <= 31; i++) {
+      let option = document.createElement("option");
+      option.value = i;
+      option.textContent = i;
+      daySelection.appendChild(option);
+    }
+
+    let months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
+    months.forEach(function (month, index) {
+      let option = document.createElement("option");
+      option.value = index + 1;
+      option.textContent = month;
+      monthSelection.appendChild(option);
+    });
+
+    let currentYear = new Date().getFullYear();
+    for (let y = currentYear; y > 1950; y--) {
+      let option = document.createElement("option");
+      option.value = y;
+      option.textContent = y;
+      yearSelection.appendChild(option);
+    }
   }
+  if (e.target.id === "signup-form") {
 
-  let months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+    if ((firstNameTrue && surNameTrue) && (emailTrue && passwordTrue)) {
 
-  months.forEach(function (month, index) {
-    let option = document.createElement("option");
-    option.value = index + 1;
-    option.textContent = month;
-    monthSelection.appendChild(option);
-  });
-  let currentYear = new Date().getFullYear();
-  console.log(currentYear);
+      history.pushState({ page: "accountcreated" }, "", "/accountcreated")
 
-  for (let y = currentYear; y > 1950; y--) {
-    let option = document.createElement("option");
-    option.value = y;
-    option.textContent = y;
-    yearSelection.appendChild(option);
+      accountCreated = formContainer.innerHTML = `
+      <div id="accountCreated-container"> 
+        <div id="accountCreated"> 
+          <h1> Account Created Successfully ✔</h1> 
+          <a href="#" id="back-to-home">Back to login</a>
+        </div>
+      </div>
+      `
+    }
   }
-  let userFirstName = document.querySelector(".userName");
-  let userSurName = document.querySelector(".userSurname");
-  let firstNameError = document.querySelector(".firstNameErorr");
-  let surNameError = document.querySelector(".SurNameErorr");
+  if (e.target.id === "back-to-home") {
 
-  let emailField = document.querySelector("#email");
-  let passwordField = document.querySelector("#password");
-  let emailError = document.querySelector(".emailError");
-  let passwordError = document.querySelector(".passwordError");
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  const passwordRegex =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-
-  userFirstName.addEventListener("input", function () {
-    if (userFirstName.value.length === 0 || userFirstName.value.length > 2) {
-      firstNameError.style.display = "none";
-    } else {
-      firstNameError.style.display = "inline";
-    }
-  });
-  userSurName.addEventListener("input", function () {
-    if (userSurName.value.length === 0 || userSurName.value.length > 2) {
-      surNameError.style.display = "none";
-    } else {
-      surNameError.style.display = "inline";
-    }
-  });
-
-  emailField.addEventListener("input", function () {
-    if (emailRegex.test(emailField.value)) {
-      userEmail = emailField.value;
-      emailError.style.display = "none";
-    } else {
-      emailError.style.display = "inline";
-    }
-    userEmailStore = emailField.value;
-  });
-
-  passwordField.addEventListener("input", function () {
-    if (passwordRegex.test(passwordField.value)) {
-      userPassword = passwordField.value;
-      passwordError.style.display = "none";
-    } else {
-      passwordError.style.display = "inline";
-    }
-    userPasswordStore = passwordField.value;
-  });
-
-  // signUptheForm.addEventListener("click", function (e) {
-  //   e.preventDefault();
-  //   let isValid = true;
-
-  //   if (userFirstName.value.length <= 2) {
-  //     firstNameError.style.display = "inline";
-  //     isValid = false;
-  //   } else {
-  //     firstNameError.style.display = "none";
-  //   }
-  //   if (userSurName.value.length <= 2) {
-  //     surNameError.style.display = "inline";
-  //     isValid = false;
-  //   } else {
-  //     surNameError.style.display = "none";
-  //   }
-  //   if (isValid) {
-  //     alert("Account Created Successfully");
-  //   }
-  // });
+    history.replaceState({ page: "home" }, "", "/");
+    formContainer.innerHTML = loginHtml
+  }
 });
 
 window.onpopstate = function (event) {
@@ -213,6 +255,8 @@ window.onpopstate = function (event) {
     formContainer.innerHTML = logInNewPage;
     return;
   }
+  if (page === "accountcreated") {
 
-  formContainer.innerHTML = loginHtml;
+    formContainer.innerHTML = accountCreated
+  }
 };
