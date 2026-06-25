@@ -315,7 +315,7 @@ a {
 #accountCreated {
     display: flex;
     flex-direction: column;
-    gap: 80px;
+    gap: 80px;  
     text-align: center;
 }
 #accountCreated a{
