@@ -1,0 +1,19 @@
+@import url(https://fonts.googleapis.com/css?family=Urbanist:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: "Urbanist";
+}
+body {
+    padding: 3rem;
+    background-color: rgb(19, 33, 98);
+}
+.city-and-searchBar {
+
+    display: flex;
+}
+.search-bar {
+    margin-left: auto;
+}
