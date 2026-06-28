@@ -8,12 +8,50 @@
 }
 body {
     padding: 3rem;
-    background-color: rgb(19, 33, 98);
+    background-color: rgb(50, 62, 115);
 }
 .city-and-searchBar {
 
     display: flex;
+    color: white;
 }
 .search-bar {
     margin-left: auto;
+
+}
+.search-bar input {
+
+    padding: 10px;
+    width: 18rem;
+    background-color: rgb(213, 227, 239);
+    border: none;
+    outline: none;
+    border-radius: 8px;
+
+}
+.search-bar input::placeholder {
+
+    color: black;
+}
+.search-bar button {
+    width: 5rem;
+    padding: 10px ;
+    background-color: rgb(213, 227, 239);
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+.temperature-and-condition {
+
+    display: flex;
+    margin-top: 8rem;
+    color: white;
+}
+.weather-condition {
+
+    margin-left: auto   ;
+}
+.only-temperature {
+    display: flex;
+    gap: 1rem;
 }

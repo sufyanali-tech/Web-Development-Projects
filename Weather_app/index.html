@@ -1,31 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>Weather App</title>
-</head>
-<body>
-  
-  <div class="city-and-searchBar">
-    
-   <div>
-     <h1>City</h1>
-    <div>
-      <p id="date-and-time">day</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Weather App</title>
+  </head>
+  <body>
+    <div class="city-and-searchBar">
+      <div>
+        <h1>City</h1>
+        <div>
+          <p id="date-and-time">day</p>
+        </div>
+      </div>
+
+      <div class="search-bar">
+        <input id="input-field" type="text" placeholder="Enter city name" />
+        <button id="button-field" type="button">Search</button>
+      </div>
     </div>
-   </div>
 
-  <div class="search-bar">
-    <input id="text" type="text" placeholder="Enter city name">
-    <button type="button">Search</button>
-  </div>
+    <div class="temperature-and-condition">
+      <div class="only-temperature">
+        <div>
+        <h1>15</h1>
+        </div>
+        <div>
+          <p>.c  | <small>.f</small></p>
+          <p>cloudy Weather</p>
+        </div>
+      </div>
 
-  </div>
+      <div class="weather-condition">
+        <div>
+          <img id="weather-img" src="#" alt="" />
+          <p>feel like</p>
+          <p>Humidity</p>
+          <p>Wind</p>
+        </div>
+      </div>
+    </div>
 
-  
-
-<script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
