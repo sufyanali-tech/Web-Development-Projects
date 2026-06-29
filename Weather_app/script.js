@@ -23,13 +23,23 @@ searctButton.addEventListener("click",async function() {
   let userInput = document.querySelector("#input-field").value.trim()
 
   // console.log(userInput);
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${userInput}&appid=${API_KEY}&units=metric`;
-  const respone = await fetch(url)
+  const currentWeather = `https://api.openweathermap.org/data/2.5/weather?q=${userInput}&appid=${API_KEY}&units=metric`;
+  const respone = await fetch(currentWeather)
   
   const data = await respone.json()
 
   console.log(data);
-  console.log(data.name);
+  // console.log(data.name);
+
+  document.querySelector("#city").textContent = data.name
+  document.querySelector("#country").textContent = data.sys.country
+  document.querySelector("#temperature").textContent = data.main.temp
+  document.querySelector("#weather-status").textContent = data.weather[0].main
+  document.querySelector("#feels-like").textContent = data.main.feels_like
+  document.querySelector("#humidity").textContent = data.main.humidity
+  document.querySelector("#wind-speed").textContent = data.wind.speed
+
+  const forecastWeather = `https://api.openweathermap.org/data/2.5/forecast?q=${userInput}&appid=${API_KEY}&units=metric`;
 
   const iconCode = data.weather[0].icon
   const iconUrl= `https://openweathermap.org/img/wn/${iconCode}@2x.png`;

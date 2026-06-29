@@ -9,7 +9,7 @@
   <body>
     <div class="city-and-searchBar">
       <div>
-        <h1>City</h1>
+        <h1 id="city">City<span> , </span><h1 id="country">Country</h1></h1>
         <div>
           <p id="date-and-time">day</p>
         </div>
@@ -24,22 +24,71 @@
     <div class="temperature-and-condition">
       <div class="only-temperature">
         <div>
-        <h1>15</h1>
+        <h1 id="temperature">0</h1>
         </div>
         <div>
-          <p>.c  | <small>.f</small></p>
-          <p>cloudy Weather</p>
+          <p class="convert-inline1">°C | </p>
+          <p class="convert-inline2">°F</p>
+          <p id="weather-status">cloudy Weather</p>
         </div>
       </div>
 
       <div class="weather-condition">
         <div>
           <img id="weather-img" src="#" alt="" />
-          <p>feel like</p>
-          <p>Humidity</p>
-          <p>Wind</p>
+        </div>
+        <div class="weather-detail">
+          <span>Feels like: <span id="feels-like"></span></span><br>
+          <span>Humidity: <span id="humidity"></span></span><br>
+          <span>Wind: <span  id="wind-speed"></span></span>
         </div>
       </div>
+    </div>
+
+    <div class="main-container">
+
+      <div class="weekend-days">
+        <p id="day-name1">Sunday</p>
+        <img id="weather" src="" alt="">
+        <small>20°<small> - 30</small></small>
+        <p id="weather-condition1">Clear</p>
+      </div>
+
+      <div class="weekend-days">
+        <p id="day-name1">Sunday</p>
+        <img id="weather" src="" alt="">
+        <small>20°<small> - 30</small></small>
+        <p id="weather-condition1">Clear</p>
+      </div>
+
+      <div class="weekend-days">
+        <p id="day-name1">Sunday</p>
+        <img id="weather" src="" alt="">
+        <small>20°<small> - 30</small></small>
+        <p id="weather-condition1">Clear</p>
+      </div>
+
+      <div class="weekend-days">
+        <p id="day-name1">Sunday</p>
+        <img id="weather" src="" alt="">
+        <small>20°<small> - 30</small></small>
+        <p id="weather-condition1">Clear</p>
+      </div>
+
+      <div class="weekend-days">
+        <p id="day-name1">Sunday</p>
+        <img id="weather" src="" alt="">
+        <small>20°<small> - 30</small></small>
+        <p id="weather-condition1">Clear</p>
+      </div>
+
+      <div class="weekend-days">
+        <p id="day-name1">Sunday</p>
+        <img id="weather" src="" alt="">
+        <small>20°<small> - 30</small></small>
+        <p id="weather-condition1">Clear</p>
+      </div>
+      
     </div>
 
     <script src="script.js"></script>
