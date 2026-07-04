@@ -1,11 +1,61 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="CSS/authentication.css" />
+    <title>Chat App</title>
+  </head>
+
+  <body>
+
+    <div class="main-container">
+
+      <!-- Welcome page of chatApp -->
+      <div class="welcome-screen" id="welcome-screen">
+        <div>
+          <h1>Welcome to ChatApp</h1>
+        </div>
+
+        <div class="login-button-style">
+          <button id="login-button" type="button">Log in</button>
+        </div>
+
+        <div class="signup-button-style">
+          <p>Don't have account ? <button type="button" id="signup-button">Sign Up</button></p>
+        </div>
+      </div>
+
+      <!-- THis screen showing the Login User  -->
+      <div class="login-screen" id="login-screen">
+
+        <h1>Enter Username and Password</h1>
+
+        <div class="button-group">
+            <input id="username" type="text" placeholder="Username">
+            <input id="password" type="password" placeholder="Password">
+            <button id="account-login-button" type="button">Login</button>
+        </div>
+
+      </div>
+
+      <!-- THis screen showing the SignUp User  -->
+      <div class="signup-screen" id="signup-screen">
+
+        <h1>Enter Username and Password</h1>
+
+        <div class="button-group">
+            <input id="username" type="text" placeholder="Username">
+            <input id="password" type="password" placeholder="Password">
+            <button id="account-login-button" type="button">Next -></button>
+        </div>
+
+      </div>
+
+      <!-- Showing Email Addrees input field -->
+       
+    </div>
+
+    <script src="JS/authentication.js"></script>
+  </body>
 </html>

@@ -1,0 +1,126 @@
+@import url(https://fonts.googleapis.com/css?family=Urbanist:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: "Urbanist";
+}
+
+.main-container {
+
+    height: 100vh;
+    width: 100%;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(23, 25, 22);
+}
+
+/* Welcome Screen styling css start */
+
+.welcome-screen {
+
+    width: 70%;
+    height: 25rem;
+    background-color: rgb(33, 33, 33);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    border-radius: 13px;
+    border-style: solid ;
+}
+
+.login-button-style button{
+    
+    padding: 10px;
+    width: 10rem;
+    border-radius: 3rem;
+    border: none;
+    background-color: rgb(69, 172, 69);
+    color: black;
+    cursor: pointer;
+    font-weight: 700;
+}
+.signup-button-style button{
+
+    color: rgb(69, 172, 69);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: medium;
+}
+.signup-button-style button:hover {
+    
+    color: rgb(136, 168,6);
+}
+
+/* End here */
+/* Login Screen styling css start here */
+
+.login-screen {
+    width: 70%;
+    height: 25rem;
+    background-color: rgb(33, 33, 33);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    border-radius: 13px;
+    border-style: solid ;
+}
+.button-group{
+
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.button-group input{
+
+    padding: 13px;
+    width: 15rem;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+}
+.button-group button{
+
+    padding: 10px;
+    width: 7rem;
+    margin: auto;
+    border-radius: 3rem;
+    border: none;
+    background-color: rgb(69, 172, 69);
+    color: black;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* End here */
+/* Signup screen styling css start here */
+
+.signup-screen {
+    width: 70%;
+    height: 25rem;
+    background-color: rgb(33, 33, 33);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    border-radius: 13px;
+    border-style: solid ;    
+}
+
+/* end here */
+/* toggling the screen  */
+.hide {
+    display: none;
+}
