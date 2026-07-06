@@ -52,5 +52,48 @@ async function handleSignup(req, res) {
     })
 }
 
-module.exports = { handleSignup };
-module.exports = { handleLogin };
+async function handleLogin(req , res) {
+    
+    let loginData = ""
+
+    req.on("data", (chunk) => {
+
+        loginData += chunk.toString();
+    })
+
+    req.on("end", async () => {
+
+        try {
+            const {username , password} = JSON.parse(loginData);
+
+            if (!username || !password) {
+                
+                res.writeHead(400,{"Content-Type": "application/json"});
+                return res.end(JSON.stringify({message: "All fields are required"}))
+            }
+
+            const existingUser = await User.findOne({username});
+            if (!existingUser) {
+                
+                res.writeHead(400,{"Content-Type": "application/json"})
+                return res.end(JSON.stringify({message: "Invalid username or password"}))
+            }
+
+            const isMatch = await bcrypt.compare(password, existingUser.password)
+            if (!isMatch) {
+                
+                res.writeHead(400,{"Content-Type": "application/json"})
+                return res.end(JSON.stringify({message: "Invalid username or password"}))
+            }
+
+            res.writeHead(200,{"Content-Type":"application/json"})
+            res.end(JSON.stringify({message: "Login successful", username:existingUser.username}))
+        }
+        catch(error) {
+            res.writeHead(500,{"Content-Type":"application/json"})
+            res.end(JSON.stringify({message:"Server error", error: error.message}))
+        }
+    })
+}
+
+module.exports = { handleSignup, handleLogin};

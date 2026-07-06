@@ -1,8 +1,7 @@
 require('dotenv').config();
 const http = require('http');
 const mongoose = require('mongoose');
-const { handleSignup } = require('./routes/auth');
-const { handleLogin } = require('./routes/auth');
+const { handleSignup , handleLogin} = require('./routes/auth');
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected successfully'))
@@ -21,7 +20,7 @@ const server = http.createServer((req, res) => {
   if (req.method === 'POST' && req.url === '/signup') {
     handleSignup(req, res);
   }
-  else if (req.method === "GET" && req.url === "/login") {
+  else if (req.method === "POST" && req.url === "/login") {
     handleLogin(req, res);
   } 
   else {
