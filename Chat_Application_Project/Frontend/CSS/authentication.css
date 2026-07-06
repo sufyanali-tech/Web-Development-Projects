@@ -4,7 +4,6 @@
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
-    font-family: "Urbanist";
 }
 
 .main-container {
@@ -16,6 +15,14 @@
     justify-content: center;
     align-items: center;
     background-color: rgb(23, 25, 22);
+    font-family: "Urbanist";
+}
+input[type="password"] {
+  font-family: Arial, sans-serif;
+}
+
+input[type="password"]::placeholder {
+  font-family: 'Urbanist', sans-serif;
 }
 
 /* Welcome Screen styling css start */
@@ -32,7 +39,7 @@
     align-items: center;
     gap: 2rem;
     border-radius: 13px;
-    border-style: solid ;
+    border: 0.1px solid rgba(255, 255, 255, 0.2);
 }
 
 .login-button-style button{
@@ -74,7 +81,8 @@
     align-items: center;
     gap: 2rem;
     border-radius: 13px;
-    border-style: solid ;
+    border: 0.1px solid rgba(255, 255, 255, 0.2);
+
 }
 .button-group{
 
@@ -102,7 +110,18 @@
     font-weight: 700;
     cursor: pointer;
 }
-
+#forgot-password  {
+ 
+    color: rgb(69, 172, 69);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: smaller;
+    width: 10rem;
+}
+#forgot-password:hover {
+    color: rgb(136, 168,6);
+}
 /* End here */
 
 /* Signup screen styling css start here */
@@ -118,7 +137,8 @@
     align-items: center;
     gap: 2rem;
     border-radius: 13px;
-    border-style: solid ;    
+    border: 0.1px solid rgba(255, 255, 255, 0.2);
+
 }
 .email-screen {
     width: 70%;
@@ -131,7 +151,8 @@
     align-items: center;
     gap: 4rem;
     border-radius: 13px;
-    border-style: solid ;
+    border: 0.1px solid rgba(255, 255, 255, 0.2);
+
 }
 .email-screen input {
     padding: 13px;
@@ -163,15 +184,14 @@
 .email-error {
     color: red;
     font-size: small;
-    /* margin: auto; */
+    margin: auto;
     margin-top: 1rem;
 }
-.email-format-error {
+/* .email-format-error {
     color: red;
     font-size: small;
-    margin: auto;
     margin-top: 1rem;   
-}
+} */
 
 /* toggling the screen  */
 .hide {

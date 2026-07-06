@@ -34,6 +34,9 @@
         <div class="button-group">
             <input id="username-for-login" type="text" placeholder="Username">
             <input id="password-for-login" type="password" placeholder="Password">
+            <button id="forgot-password" class="forgot-password" type="button">Forgot password?</button>
+            <p class="error-message hide" id="username-error-login">Username or password required</p>
+            <p class="password-error hide" id="password-error-login">Password must contain (Abc12345$) format</p>
             <button id="account-login-button" type="button">Login</button>
         </div>
 
@@ -47,8 +50,8 @@
         <div class="button-group">
             <input id="username-for-signup" type="text" placeholder="Username">
             <input id="password-for-signup" type="password" placeholder="Password">
-            <p class="error-message hide" id="username-or-password-error">Username or password required</p>
-            <p class="password-error hide" id="password-error">Password must contain numbers characters special characters</p>
+            <p class="error-message hide" id="username-error-signup">Username or password required</p>
+            <p class="password-error hide" id="password-error-signup">Password must contain (Abc12345$) format</p>
             <button id="next-button" type="button">Next -></button>
         </div>
 
@@ -62,7 +65,7 @@
         <div class="banner-and-input">
           <input type="email" id="email" placeholder="Enter email addrees">
           <p class="email-error hide" id="email-error">Email required !</p>
-          <p class="email-format-error hide" id="email-format-error">Enter email like this eg abc123@gmail.com</p>
+          <p class="email-error hide" id="email-format-error">Enter email like this eg abc123@gmail.com</p>
         </div>
         <button id="account-creation-login-btn" type="button">Log in</button>
       </div>
