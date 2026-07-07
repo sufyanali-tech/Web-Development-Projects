@@ -1,0 +1,32 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+.main-ui {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    background-color: red;
+}
+.icon-bar {
+    width: 60px;
+    flex-shrink: 0;
+    background-color: #202C33;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+}
+.chat-list-panel {
+    width: 30%;
+    flex-shrink: 0;
+    background-color: #0B141A;
+}
+.conversation-panel {
+
+    flex: 1;
+    background-color: #202C33;
+}
