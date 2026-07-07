@@ -96,4 +96,41 @@ async function handleLogin(req , res) {
     })
 }
 
-module.exports = { handleSignup, handleLogin};
+async function handleCheckEmail(req, res) {
+    
+    let userEmail = "";
+
+    req.on("data", (chunk) => {
+
+        userEmail += chunk.toString();
+    })
+
+    req.on("end", async () => {
+
+        try {
+            const { email } = JSON.parse(userEmail);
+
+            if (!email) {
+                
+                res.writeHead(400, { "Content-Type": "appliction/json" })
+                return res.end(JSON.stringify({message: "Email is required"}))
+            }
+
+            const existingUser = await User.findOne({ email });
+
+            if (!existingUser) {
+                res.writeHead(400, { "Content-Type": "application/json" });
+                return res.end(JSON.stringify({ message: "Email not found" }));
+            }
+
+            res.writeHead(200, { "Content-Type": "application/json" });
+            res.end(JSON.stringify({ message: "Email verified", username: existingUser.username }));
+
+        } catch (error) {
+            res.writeHead(500, { "Content-Type": "application/json" });
+            res.end(JSON.stringify({ message: "Server error", error: error.message }));
+        }
+    })
+}
+
+module.exports = { handleSignup, handleLogin, handleCheckEmail};
