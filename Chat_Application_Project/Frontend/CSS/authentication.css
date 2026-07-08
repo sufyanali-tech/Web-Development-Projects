@@ -187,12 +187,19 @@ input[type="password"]::placeholder {
     margin: auto;
     margin-top: 1rem;
 }
-/* .email-format-error {
-    color: red;
-    font-size: small;
-    margin-top: 1rem;   
-} */
-
+.toward-login-screen {
+    width: 70%;
+    height: 25rem;
+    background-color: rgb(33, 33, 33);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    border-radius: 13px;
+    border: 0.1px solid rgba(255, 255, 255, 0.2);
+}
 /* toggling the screen  */
 .hide {
     display: none;

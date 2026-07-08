@@ -1,11 +1,10 @@
 // Catching HTML Elements
-
+let towardLoginScreen = document.querySelector(".toward-login-screen")
 let welcomeScreen = document.querySelector("#welcome-screen");
 let loginScreen = document.querySelector(".login-screen");
 let signupScreen = document.querySelector(".signup-screen");
 let emailScreen = document.querySelector(".email-screen");
-let userNamePasswordLoginError = document.querySelector(
-  "#username-error-login",
+let userNamePasswordLoginError = document.querySelector("#username-error-login",
 );
 let passwordLoginError = document.querySelector("#password-error-login");
 let userNamePasswordSignupError = document.querySelector(
@@ -14,6 +13,7 @@ let userNamePasswordSignupError = document.querySelector(
 let passwordSignupError = document.querySelector("#password-error-signup");
 let emailError = document.querySelector("#email-error");
 let emailFormatError = document.querySelector("#email-format-error");
+
 
 // Catching all Buttons
 const loginButton = document.querySelector("#login-button");
@@ -24,6 +24,7 @@ const accountSigupButton = document.querySelector(
 );
 const accountLoginButton = document.querySelector("#account-login-button");
 const forgotPassword = document.querySelector("#forgot-password");
+const towardLoginButton = document.querySelector("#toward-login-btn")
 
 // Catching all inputs fields
 let inputUserNameForSignup = document.querySelector("#username-for-signup");
@@ -134,7 +135,10 @@ accountSigupButton.addEventListener("click", async () => {
 
         if (response.ok) {
           alert(data.message);
-          window.location.href = "chat.html";
+          // window.location.href = "chat.html";
+          emailScreen.classList.add("hide")
+          towardLoginScreen.classList.remove("hide")
+
         } else {
           alert(data.message);
         }
@@ -170,3 +174,9 @@ accountSigupButton.addEventListener("click", async () => {
     }
   }
 });
+
+towardLoginButton.addEventListener("click", () => {
+
+  towardLoginScreen.classList.add("hide")
+  loginScreen.classList.remove("hide")
+})

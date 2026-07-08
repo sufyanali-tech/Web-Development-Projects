@@ -1,3 +1,4 @@
+let chatSlideBar = document.querySelector("#chat-slide-bar");
 let allIcons = document.querySelectorAll(".icons");
 
 allIcons.forEach((btn) => {
@@ -9,4 +10,4 @@ allIcons.forEach((btn) => {
     })
 })
 
-let message = document.querySelector("#")
+let message = document.querySelector("#chat-icon");

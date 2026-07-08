@@ -1,5 +1,7 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
+const sendResetEmail = require("../utils/sendEmail")
+
 
 async function handleSignup(req, res) {
     
@@ -40,7 +42,7 @@ async function handleSignup(req, res) {
             await newUser.save();
 
             res.writeHead(201, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify({ message: 'User created successfully' }));
+            res.end(JSON.stringify({ message: 'Account Created Successfully' }));
 
         }
         catch(error) {
@@ -96,7 +98,7 @@ async function handleLogin(req , res) {
     })
 }
 
-async function handleCheckEmail(req, res) {
+async function handleForgotPassword(req, res) {
     
     let userEmail = "";
 
@@ -123,8 +125,16 @@ async function handleCheckEmail(req, res) {
                 return res.end(JSON.stringify({ message: "Email not found" }));
             }
 
+            const resetCode = Math.floor(100000 + Math.random() * 900000).toString();
+
+            existingUser.resetCode = resetCode
+            existingUser.resetCodeExpiry = Date.now() + 10 * 60 * 1000
+            await existingUser.save()
+
+            await sendResetEmail(userEmail, resetCode);
+
             res.writeHead(200, { "Content-Type": "application/json" });
-            res.end(JSON.stringify({ message: "Email verified", username: existingUser.username }));
+            res.end(JSON.stringify({ message: "Reset code sent to your email" }));
 
         } catch (error) {
             res.writeHead(500, { "Content-Type": "application/json" });
