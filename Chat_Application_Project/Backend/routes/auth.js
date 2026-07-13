@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
 const sendResetEmail = require("../utils/sendEmail");
+const { verify } = require("jsonwebtoken");
 
 async function handleSignup(req, res) {
   let body = "";
@@ -127,7 +128,7 @@ async function handleForgotPassword(req, res) {
       existingUser.resetCodeExpiry = Date.now() + 10 * 60 * 1000;
       await existingUser.save();
 
-      await sendResetEmail(userEmail, resetCode);
+      await sendResetEmail(email, resetCode);
 
       res.writeHead(200, { "Content-Type": "application/json" });
       res.end(JSON.stringify({ message: "Reset code sent to your email" }));
@@ -151,7 +152,7 @@ async function handleVerifyCode(req, res) {
     try {
       const { email, verifyCode } = JSON.parse(emailAndVerifyCode);
 
-      if (!email || !code) {
+      if (!email || !verifyCode) {
 
         res.writeHead(400, { "Content-Type": "application/json" });
         return res.end(
@@ -159,15 +160,23 @@ async function handleVerifyCode(req, res) {
         );
       }
 
-      const exitingUser = await User.findOne({ email });
+      const existingUser = await User.findOne({ email });
 
-      if (!exitingUser) {
+      if (!existingUser) {
 
         res.writeHead(400, { "Content-Type": "application/json" });
         return res.end(JSON.stringify({ message: "Invalid request" }));
       }
 
-      if (existingUser.resetCode !== verifyCode) {
+      if (Number(existingUser.resetCode ) !== verifyCode) {
+
+        // console.log(existingUser);
+        // console.log(existingUser.resetCode);
+        
+        // console.log(typeof(Number(existingUser.resetCode)));
+        // console.log(typeof(verifyCode));
+        // console.log(typeof(existingUser.resetCode));
+        
 
         res.writeHead(400, { "Content-Type": "application/json" });
         return res.end(
@@ -238,4 +247,4 @@ async function handleResetPassword(req, res) {
     })
 }
 
-module.exports = { handleSignup, handleLogin, handleForgotPassword, handleVerifyCode, handleForgotPassword};
+module.exports = { handleSignup, handleLogin, handleForgotPassword, handleVerifyCode, handleResetPassword};

@@ -1,7 +1,8 @@
 require('dotenv').config();
 const http = require('http');
 const mongoose = require('mongoose');
-const { handleSignup , handleLogin, handleCheckEmail} = require('./routes/auth');
+const { handleSignup , handleLogin, handleForgotPassword, handleVerifyCode, handleResetPassword } = require('./routes/auth');
+const { ifError } = require('assert');
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected successfully'))
@@ -24,8 +25,12 @@ const server = http.createServer((req, res) => {
     handleLogin(req, res);
   } 
   else if (req.method === "POST" && req.url === "/forgot-password") {
-    handleCheckEmail(req, res);
+    handleForgotPassword(req, res);
   } 
+  else if(req.method === "POST" && req.url === "/verify-code") {
+
+    handleVerifyCode(req, res);
+  }
   else {
     res.writeHead(404, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ message: 'Route not found' }));

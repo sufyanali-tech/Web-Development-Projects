@@ -8,9 +8,7 @@
   </head>
 
   <body>
-
     <div class="main-container">
-
       <!-- Welcome page of chatApp -->
       <div class="welcome-screen" id="welcome-screen">
         <div>
@@ -22,61 +20,90 @@
         </div>
 
         <div class="signup-button-style">
-          <p>Don't have account ? <button type="button" id="signup-button">Sign Up</button></p>
+          <p>
+            Don't have account ?
+            <button type="button" id="signup-button">Sign Up</button>
+          </p>
         </div>
       </div>
 
       <!-- THis screen showing the Login User  -->
       <div class="login-screen" id="login-screen">
-
-        <h1>Enter Username and Password</h1>
+        <h2>Enter Username and Password</h2>
 
         <div class="button-group">
-            <input id="username-for-login" type="text" placeholder="Username">
-            <input id="password-for-login" type="password" placeholder="Password">
-            <button id="forgot-password" class="forgot-password" type="button">Forgot password?</button>
-            <p class="error-message hide" id="username-error-login">Username or password required</p>
-            <p class="password-error hide" id="password-error-login">Password must contain (Abc12345$) format</p>
-            <button id="account-login-button" type="button">Login</button>
+          <input id="username-for-login" type="text" placeholder="Username" />
+          <input
+            id="password-for-login"
+            type="password"
+            placeholder="Password"
+          />
+          <button id="forgot-password" class="forgot-password" type="button">
+            Forgot password?
+          </button>
+          <p class="error-message hide" id="username-error-login">
+            Username or password required
+          </p>
+          <p class="password-error hide" id="password-error-login">
+            Password must contain (Abc12345$) format
+          </p>
+          <button id="account-login-button" type="button">Login</button>
         </div>
-
       </div>
 
       <!-- THis screen showing the SignUp User  -->
       <div class="signup-screen" id="signup-screen">
-
-        <h1>Enter Username and Password</h1>
+        <h2>Enter Username and Password</h2>
 
         <div class="button-group">
-            <input id="username-for-signup" type="text" placeholder="Username">
-            <input id="password-for-signup" type="password" placeholder="Password">
-            <p class="error-message hide" id="username-error-signup">Username or password required</p>
-            <p class="password-error hide" id="password-error-signup">Password must contain (Abc12345$) format</p>
-            <button id="next-button" type="button">Next -></button>
+          <input id="username-for-signup" type="text" placeholder="Username" />
+          <input
+            id="password-for-signup"
+            type="password"
+            placeholder="Password"
+          />
+          <p class="error-message hide" id="username-error-signup">
+            Username or password required
+          </p>
+          <p class="password-error hide" id="password-error-signup">
+            Password must contain (Abc12345$) format
+          </p>
+          <button id="next-button" type="button">Next -></button>
         </div>
-
       </div>
 
       <!-- Showing Email Addrees input field -->
 
       <div class="email-screen" id="email-screen">
-
-        <h1>Enter your email for account recovery</h1>
+        <h2>Enter your email for account recovery</h2>
         <div class="banner-and-input">
-          <input type="email" id="email" placeholder="Enter email addrees">
+          <input type="email" id="email" placeholder="Enter email addrees" />
           <p class="email-error hide" id="email-error">Email required !</p>
-          <p class="email-error hide" id="email-format-error">Enter email like this eg abc123@gmail.com</p>
+          <p class="email-error hide" id="email-format-error">
+            Enter email like this eg abc123@gmail.com
+          </p>
         </div>
         <button id="account-creation-login-btn" type="button">Log in</button>
       </div>
 
       <div class="toward-login-screen hide">
-        <h2>Account Created Sccessfully </h2>
-        <p>Login your account </p>
+        <h2>Account Created Sccessfully</h2>
+        <p>Login your account</p>
         <button type="button" id="toward-login-btn">Login</button>
-
       </div>
-       
+
+      <div class="verification-code-screen">
+        <h2>Enter Verification Code</h2>
+        <div >
+          <input class="otp" type="text" name="" id="" />
+          <input class="otp" type="text" name="" id="" />
+          <input class="otp" type="text" name="" id="" />
+          <input class="otp" type="text" name="" id="" />
+          <input class="otp" type="text" name="" id="" />
+          <input class="otp" type="text" name="" id="" />
+        </div>
+        <button id="verify-btn" type="button">Verify</button>
+      </div>
     </div>
 
     <script src="JS/authentication.js"></script>
