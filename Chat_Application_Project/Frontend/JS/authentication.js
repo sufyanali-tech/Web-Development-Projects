@@ -4,14 +4,10 @@ let welcomeScreen = document.querySelector("#welcome-screen");
 let loginScreen = document.querySelector(".login-screen");
 let signupScreen = document.querySelector(".signup-screen");
 let emailScreen = document.querySelector(".email-screen");
-let VerifyCode = document.querySelector(".verification-code-screen")
-let userNamePasswordLoginError = document.querySelector(
-  "#username-error-login",
-);
+let VerifyCode = document.querySelector(".verification-code-screen");
+let userNamePasswordLoginError = document.querySelector("#username-error-login");
 let passwordLoginError = document.querySelector("#password-error-login");
-let userNamePasswordSignupError = document.querySelector(
-  "#username-error-signup",
-);
+let userNamePasswordSignupError = document.querySelector("#username-error-signup");
 let passwordSignupError = document.querySelector("#password-error-signup");
 let emailError = document.querySelector("#email-error");
 let emailFormatError = document.querySelector("#email-format-error");
@@ -20,13 +16,11 @@ let emailFormatError = document.querySelector("#email-format-error");
 const loginButton = document.querySelector("#login-button");
 const signupButton = document.querySelector("#signup-button");
 const nextButton = document.querySelector("#next-button");
-const accountSigupAndLoginButton = document.querySelector(
-  "#account-creation-login-btn",
-);
+const accountSigupAndLoginButton = document.querySelector("#account-creation-login-btn");
 const accountLoginButton = document.querySelector("#account-login-button");
 const forgotPassword = document.querySelector("#forgot-password");
 const towardLoginButton = document.querySelector("#toward-login-btn");
-const verifyCodeBtn = document.querySelector("#verify-btn")
+const verifyCodeBtn = document.querySelector("#verify-btn");
 
 // Catching all inputs fields
 let inputUserNameForSignup = document.querySelector("#username-for-signup");
@@ -34,6 +28,7 @@ let inputPasswordForSignup = document.querySelector("#password-for-signup");
 let userEmail = document.querySelector("#email");
 let inputUserNameForlogin = document.querySelector("#username-for-login");
 let inputPasswordForlogin = document.querySelector("#password-for-login");
+let otpInputFields = document.querySelectorAll(".otp");
 
 let forLogin = false;
 
@@ -42,7 +37,7 @@ let forLogin = false;
 loginScreen.classList.add("hide");
 signupScreen.classList.add("hide");
 emailScreen.classList.add("hide");
-VerifyCode.classList.add("hide")
+VerifyCode.classList.add("hide");
 
 loginButton.addEventListener("click", () => {
   welcomeScreen.classList.add("hide");
@@ -112,7 +107,14 @@ nextButton.addEventListener("click", () => {
 
 accountSigupAndLoginButton.addEventListener("click", async () => {
   if (forLogin) {
+
+    if(accountSigupAndLoginButton.disabled) return;
+
     emailFormatError.classList.add("hide");
+
+    accountSigupAndLoginButton.disabled = true;
+    accountSigupAndLoginButton.textContent = `Sending ....`
+
     try {
       const response = await fetch("http://localhost:5000/forgot-password", {
         method: "POST",
@@ -127,10 +129,8 @@ accountSigupAndLoginButton.addEventListener("click", async () => {
       const data = await response.json();
 
       if (response.ok) {
-        alert(data.message);
-        window.location.href = "chat.html";
-        emailScreen.classList.add("hide")
-        VerifyCode.classList.remove("hide")
+        emailScreen.classList.add("hide");
+        VerifyCode.classList.remove("hide");
       } else {
         alert(data.message);
       }
@@ -181,3 +181,50 @@ towardLoginButton.addEventListener("click", () => {
   towardLoginScreen.classList.add("hide");
   loginScreen.classList.remove("hide");
 });
+
+
+otpInputFields.forEach((input, index) => {
+  
+  input.setAttribute("maxlength","1");
+  input.addEventListener("input", () => {
+
+    input.value = input.value.replace(/[^0-9]/g, "");
+    if (input.value) {
+      // console.log(input.value);
+      
+      // verificationCode += input.value
+      if (index < otpInputFields.length - 1) {
+        otpInputFields[index + 1].focus();
+      } else {
+        verifyCodeBtn.focus();
+      }
+    }
+  })
+} )
+
+
+otpInputFields.forEach((input,index) => {
+
+  input.addEventListener("keydown", (e) => {
+
+    if(e.key === "Backspace" && index > 0 && !input.value) {
+    
+      otpInputFields[index - 1].focus()
+      otpInputFields[index - 1].value = ""
+      // input.value = ""
+      
+    }
+  })
+})
+
+let verificationCode = "" 
+
+verifyCodeBtn.addEventListener("click", async () => {
+
+  otpInputFields.forEach((input) => {
+
+    verificationCode += input.value    
+  })
+  
+  
+})
