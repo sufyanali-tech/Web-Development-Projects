@@ -10,7 +10,7 @@ mongoose.connect(process.env.MONGO_URI)
 
 const server = http.createServer((req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   if (req.method === 'OPTIONS') {
@@ -30,6 +30,10 @@ const server = http.createServer((req, res) => {
   else if(req.method === "POST" && req.url === "/verify-code") {
 
     handleVerifyCode(req, res);
+  }
+  else if(req.method === "PATCH" && req.url === "/reset-password") {
+
+    handleResetPassword(req, res);
   }
   else {
     res.writeHead(404, { 'Content-Type': 'application/json' });

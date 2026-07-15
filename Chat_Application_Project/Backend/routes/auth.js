@@ -168,19 +168,11 @@ async function handleVerifyCode(req, res) {
         return res.end(JSON.stringify({ message: "Invalid request" }));
       }
 
-      if (Number(existingUser.resetCode ) !== verifyCode) {
-
-        // console.log(existingUser);
-        // console.log(existingUser.resetCode);
-        
-        // console.log(typeof(Number(existingUser.resetCode)));
-        // console.log(typeof(verifyCode));
-        // console.log(typeof(existingUser.resetCode));
-        
+      if (existingUser.resetCode !== verifyCode) {        
 
         res.writeHead(400, { "Content-Type": "application/json" });
         return res.end(
-          JSON.stringify({ message: "Verification Code Incorrect" }),
+          JSON.stringify({ message: "Verification code incorrect" }),
         );
       }
 
@@ -188,7 +180,7 @@ async function handleVerifyCode(req, res) {
         res.writeHead(400, { "Content-Type": "application/json" });
         return res.end(JSON.stringify({ message: "Code has expired" }));
       }
-
+      
       res.writeHead(200, { "Content-Type": "application/json" });
       res.end(JSON.stringify({ message: "Code Verification Sccessfully" }));
 
@@ -200,13 +192,13 @@ async function handleVerifyCode(req, res) {
   });
 }
 
-async function handleResetPassword(req, res) {
+async function handleResetPassword(req, res) {  
     
     let resetData = ""
 
     req.on("data", (chunk) => {
 
-        resetData += resetData.toString();
+        resetData += chunk.toString();
     })
 
     req.on("end", async () => {
@@ -214,25 +206,27 @@ async function handleResetPassword(req, res) {
         try {
             const {email, resetPassword} = JSON.parse(resetData);
 
+            
+
         if (!email || !resetPassword) {
             
-            res.writeHead(400, {"Content-Type": "application/json"})
-            return res.end(JSON.stringify({message: "Email and Reset Password Required"}))
+          res.writeHead(400, {"Content-Type": "application/json"})
+          return res.end(JSON.stringify({message: "Email and Reset Password Required"}))
         }
 
-        const exitingUser = await User.findOne({email});
+        const existingUser = await User.findOne({email});
 
-        if (!exitingUser) {
+        if (!existingUser) {
             
-            res.writeHead(400, {"Content-Type": "application/json"})
-            return res.end(JSON.stringify({message: "User Not find"}))
+          res.writeHead(400, {"Content-Type": "application/json"})
+          return res.end(JSON.stringify({message: "User Not find"}))
         }
-
+        
         const hashedPassword = await bcrypt.hash(resetPassword, 10);
 
         existingUser.password = hashedPassword;
         existingUser.resetCode = null;
-        exitingUser.resetCodeExpiry = null;
+        existingUser.resetCodeExpiry = null;
         existingUser.save()
 
         res.writeHead(200, {"Content-Type": "application/json"})

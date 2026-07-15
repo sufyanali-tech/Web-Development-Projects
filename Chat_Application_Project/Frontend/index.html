@@ -94,15 +94,35 @@
 
       <div class="verification-code-screen">
         <h2>Enter Verification Code</h2>
-        <div >
-          <input class="otp" type="text" name="" id="" />
-          <input class="otp" type="text" name="" id="" />
-          <input class="otp" type="text" name="" id="" />
-          <input class="otp" type="text" name="" id="" />
-          <input class="otp" type="text" name="" id="" />
-          <input class="otp" type="text" name="" id="" />
+        <div>
+          <input class="otp" type="text" />
+          <input class="otp" type="text" />
+          <input class="otp" type="text" />
+          <input class="otp" type="text" />
+          <input class="otp" type="text" />
+          <input class="otp" type="text" />
         </div>
+        <p class="verification-code-error hide">
+          Verification code incorrect
+        </p>
         <button id="verify-btn" type="button">Verify</button>
+      </div>
+
+      <div class="reset-password-screen hide">
+        <h2>Enter new password</h2>
+        <div class="input-group">
+          <input
+            type="password"
+            id="reset-password"
+            placeholder="Enter new password"
+          />
+          <p class="reset-password-error">
+            Password must contain (Abc12345$) format
+          </p>
+        </div>
+        <button class="reset-password-btn" id="reset-password-btn">
+          Confirm
+        </button>
       </div>
     </div>
 

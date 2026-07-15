@@ -4,23 +4,34 @@ let welcomeScreen = document.querySelector("#welcome-screen");
 let loginScreen = document.querySelector(".login-screen");
 let signupScreen = document.querySelector(".signup-screen");
 let emailScreen = document.querySelector(".email-screen");
-let VerifyCode = document.querySelector(".verification-code-screen");
-let userNamePasswordLoginError = document.querySelector("#username-error-login");
+let VerifyCodeScreen = document.querySelector(".verification-code-screen");
+let userNamePasswordLoginError = document.querySelector(
+  "#username-error-login",
+);
 let passwordLoginError = document.querySelector("#password-error-login");
-let userNamePasswordSignupError = document.querySelector("#username-error-signup");
+let userNamePasswordSignupError = document.querySelector(
+  "#username-error-signup",
+);
 let passwordSignupError = document.querySelector("#password-error-signup");
 let emailError = document.querySelector("#email-error");
 let emailFormatError = document.querySelector("#email-format-error");
+let resetPasswordScreen = document.querySelector(".reset-password-screen");
+let resetPasswordError = document.querySelector(".reset-password-error");
+let verificationCodeError = document.querySelector(".verification-code-error")
+
 
 // Catching all Buttons
 const loginButton = document.querySelector("#login-button");
 const signupButton = document.querySelector("#signup-button");
 const nextButton = document.querySelector("#next-button");
-const accountSigupAndLoginButton = document.querySelector("#account-creation-login-btn");
+const accountSigupAndLoginButton = document.querySelector(
+  "#account-creation-login-btn",
+);
 const accountLoginButton = document.querySelector("#account-login-button");
 const forgotPassword = document.querySelector("#forgot-password");
 const towardLoginButton = document.querySelector("#toward-login-btn");
 const verifyCodeBtn = document.querySelector("#verify-btn");
+const resetPasswordBtn = document.querySelector("#reset-password-btn");
 
 // Catching all inputs fields
 let inputUserNameForSignup = document.querySelector("#username-for-signup");
@@ -29,15 +40,16 @@ let userEmail = document.querySelector("#email");
 let inputUserNameForlogin = document.querySelector("#username-for-login");
 let inputPasswordForlogin = document.querySelector("#password-for-login");
 let otpInputFields = document.querySelectorAll(".otp");
+let resetPasswordField = document.querySelector("#reset-password");
 
 let forLogin = false;
 
 // Login Section all funtionality
-
+resetPasswordError.classList.add("hide");
 loginScreen.classList.add("hide");
 signupScreen.classList.add("hide");
 emailScreen.classList.add("hide");
-VerifyCode.classList.add("hide");
+VerifyCodeScreen.classList.add("hide");
 
 loginButton.addEventListener("click", () => {
   welcomeScreen.classList.add("hide");
@@ -78,7 +90,6 @@ accountLoginButton.addEventListener("click", async () => {
       const data = await response.json();
 
       if (response.ok) {
-        alert(data.message);
         window.location.href = "chat.html";
       } else {
         alert(data.message);
@@ -105,38 +116,49 @@ nextButton.addEventListener("click", () => {
   }
 });
 
+let emailVerification = "";
+
 accountSigupAndLoginButton.addEventListener("click", async () => {
   if (forLogin) {
+    if (!userEmail.value) {
 
-    if(accountSigupAndLoginButton.disabled) return;
+      emailError.classList.remove("hide");
 
-    emailFormatError.classList.add("hide");
+    } else {
 
-    accountSigupAndLoginButton.disabled = true;
-    accountSigupAndLoginButton.textContent = `Sending ....`
+      emailError.classList.add("hide")
+      emailVerification = userEmail.value;
+      if (accountSigupAndLoginButton.disabled) return;
 
-    try {
-      const response = await fetch("http://localhost:5000/forgot-password", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: userEmail.value,
-        }),
-      });
+      emailFormatError.classList.add("hide");
 
-      const data = await response.json();
+      accountSigupAndLoginButton.disabled = true;
+      accountSigupAndLoginButton.textContent = `Sending ....`;
 
-      if (response.ok) {
-        emailScreen.classList.add("hide");
-        VerifyCode.classList.remove("hide");
-      } else {
-        alert(data.message);
+      try {
+        const response = await fetch("http://localhost:5000/forgot-password", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: userEmail.value,
+          }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          emailScreen.classList.add("hide");
+          VerifyCodeScreen.classList.remove("hide");
+        } else {
+          alert(data.message);
+          accountSigupAndLoginButton.textContent = `Login`
+        }
+      } catch (error) {
+        console.log("Error:", error);
+        alert("Something went wrong. Please try again.");
       }
-    } catch (error) {
-      console.log("Error:", error);
-      alert("Something went wrong. Please try again.");
     }
   } else {
     if (!userEmail.value) {
@@ -163,7 +185,6 @@ accountSigupAndLoginButton.addEventListener("click", async () => {
         const data = await response.json();
 
         if (response.ok) {
-          alert(data.message);
           emailScreen.classList.add("hide");
           towardLoginScreen.classList.remove("hide");
         } else {
@@ -182,49 +203,101 @@ towardLoginButton.addEventListener("click", () => {
   loginScreen.classList.remove("hide");
 });
 
-
 otpInputFields.forEach((input, index) => {
-  
-  input.setAttribute("maxlength","1");
+  input.setAttribute("maxlength", "1");
   input.addEventListener("input", () => {
-
     input.value = input.value.replace(/[^0-9]/g, "");
     if (input.value) {
-      // console.log(input.value);
-      
-      // verificationCode += input.value
       if (index < otpInputFields.length - 1) {
         otpInputFields[index + 1].focus();
       } else {
         verifyCodeBtn.focus();
       }
     }
-  })
-} )
+  });
+});
 
-
-otpInputFields.forEach((input,index) => {
-
+otpInputFields.forEach((input, index) => {
   input.addEventListener("keydown", (e) => {
-
-    if(e.key === "Backspace" && index > 0 && !input.value) {
-    
-      otpInputFields[index - 1].focus()
-      otpInputFields[index - 1].value = ""
-      // input.value = ""
-      
+    if (e.key === "Backspace" && index > 0 && !input.value) {
+      otpInputFields[index - 1].focus();
+      otpInputFields[index - 1].value = "";
     }
-  })
-})
+  });
+});
 
-let verificationCode = "" 
+let verificationCode = "";
 
 verifyCodeBtn.addEventListener("click", async () => {
-
   otpInputFields.forEach((input) => {
+    verificationCode += input.value;
+  });
 
-    verificationCode += input.value    
-  })
-  
-  
-})
+  try {
+    const response = await fetch("http://localhost:5000/verify-code", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: emailVerification,
+        verifyCode: verificationCode,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      alert(data.message);``
+
+      verificationCodeError.classList.add("hide");
+      VerifyCodeScreen.classList.add("hide");
+      resetPasswordScreen.classList.remove("hide");
+    } else {
+
+      otpInputFields.forEach((input) => {
+
+        input.value = ""
+      })
+
+      verificationCode = ""
+      verificationCodeError.textContent = data.message
+      verificationCodeError.classList.remove("hide");
+    }
+  } catch (error) {
+    alert("Server ERror ");
+  }
+});
+
+resetPasswordBtn.addEventListener("click", async () => {
+  const isTrue = passwordRegex.test(resetPasswordField.value);
+
+  if (isTrue) {
+    resetPasswordError.classList.add("hide");
+    try {
+      const response = await fetch("http://localhost:5000/reset-password", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: emailVerification,
+          resetPassword: resetPasswordField.value,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // alert(data.message);
+        window.location.href = "chat.html";
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      alert("Something went wrong");
+    }
+  } else {
+    resetPasswordError.classList.remove("hide");
+  }
+});

@@ -219,7 +219,7 @@ input[type="password"]::placeholder {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 4rem;
+    gap: 2rem;
     border-radius: 13px;
     border: 0.1px solid rgba(255, 255, 255, 0.2);
 }
@@ -230,9 +230,12 @@ input[type="password"]::placeholder {
     text-align: center;
     font-size: 25px;
 }
-/* .otp:focus {
+.verification-code-error {
 
-} */
+    color: red;
+    font-size: small;
+    margin-top: 1rem;
+}
 #verify-btn {
     
     padding: 10px;
@@ -244,6 +247,51 @@ input[type="password"]::placeholder {
     font-weight: 700;
     cursor: pointer;
 }
+
+.reset-password-screen {
+    width: 70%;
+    height: 25rem;
+    background-color: rgb(33, 33, 33);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    border-radius: 13px;
+    border: 0.1px solid rgba(255, 255, 255, 0.2);
+}
+.reset-password-screen input {
+    padding: 13px;
+    width: 15rem;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+}
+.input-group {
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.reset-password-error {
+    color: red;
+    font-size: small;
+    margin: auto;
+    margin-top: 1rem;
+}
+.reset-password-btn {
+
+    padding: 10px;
+    width: 7rem;
+    border-radius: 3rem;
+    border: none;
+    background-color: rgb(69, 172, 69);
+    color: black;
+    font-weight: 700;
+    cursor: pointer;
+}
+
 /* toggling the screen  */
 .hide {
     display: none;
