@@ -1,7 +1,10 @@
+@import url(https://fonts.googleapis.com/css?family=Urbanist:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+
 * {
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
+    font-family: "Urbanist";
 }
 
 .main-ui {
@@ -12,27 +15,21 @@
 
 .icon-bar {
     width: 60px;
-    flex-shrink: 0;
     background-color: #111b21;
     padding-top: 1rem;
     padding-bottom: 1rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 3rem;
-}
-
-.chat-list-panel {
-    width: 30%;
+    justify-content: space-between;
     flex-shrink: 0;
-    background-color: #0c0c0e;
-    border: 2px solid #111b21;
+    align-items: center;
 }
 
-.conversation-panel {
+.for-flex {
 
-    flex: 1;
-    background-color: #0c0c0e;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
 }
 
 .icons {
@@ -40,9 +37,6 @@
     background: transparent;
     border: none;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     padding: 10px;
     border-radius: 50%;
     transition: background 0.2s ease;
@@ -66,6 +60,63 @@
 
 .icons.active .icon-inside-color {
 
-    stroke-width: 3.5;
+    stroke-width: 3;
     stroke: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Chat Screen CSS */
+
+.chat-list-panel {
+    width: 30%;
+    flex-shrink: 0;
+    background-color: #101012;
+    border: 1px solid #111b21;
+    padding: 1rem;
+
+}
+.icon-name-search-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.chat-search-bar {
+    padding: 10px;
+    border-radius: 1.5rem;
+    border: 2px solid transparent;
+    background-color: #2a2a2b;
+    transition: border-color 0.2s ease;
+    outline: none;
+    display: flex;
+    gap: 10px;
+}
+.search-bar-input {
+    
+    /* font-weight: 700; */
+    background-color: #2a2a2b;
+    color: white;
+    outline: none;
+    border: none;
+}
+.chat-search-bar:focus-within {
+   
+    border-color: #25D366;
+}
+/* Coversation Screen CSS */
+
+.conversation-panel {
+
+    flex: 1;
+    background-color: #0c0c0e;
 }
